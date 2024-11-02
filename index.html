@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="config/tailwindconfig.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+
+<body class="bg-white text-black dark:bg-black dark:text-gray-200">
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 w-full bg-black z-50 nav-visible">
+        <div class="container mx-auto px-4 py-4 text-white">
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex nav-container justify-between items-center space-x-8 group">
+                <div
+                    class="flex-1 flex justify-end space-x-4 opacity-0 group-hover:opacity-100 transform translate-x-10 group-hover:translate-x-0 transition-all duration-300 ease-in-out">
+                    <a href="#education" class="hover:text-gray-600 transition-colors">Education</a>
+                    <a href="#experience" class="hover:text-gray-600 transition-colors">Experience</a>
+                    <a href="#about" class="hover:text-gray-600 transition-colors">About</a>
+                </div>
+                <div class="flex items-center group">
+                    <span
+                        class="transform translate-x-2 opacity-40 animate-ping group-hover:animate-none group-hover:opacity-100 group-hover:translate-x-0 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </span>
+                    <b><a href="#home" class="px-2 transition-colors nick-name-data">FUFA</a></b>
+                    <span
+                        class="transform -translate-x-2 opacity-40 animate-ping group-hover:animate-none group-hover:opacity-100 group-hover:translate-x-0 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </span>
+                </div>
+                <div
+                    class="flex-1 flex justify-start space-x-4 opacity-0 group-hover:opacity-100 transform -translate-x-10 group-hover:translate-x-0 transition-all duration-300 ease-in-out">
+                    <a href="#project" class="hover:text-gray-600 transition-colors">Project</a>
+                    <a href="#article" class="hover:text-gray-600 transition-colors">Article</a>
+                    <a href="#certification" class="hover:text-gray-600 transition-colors">Certification</a>
+                </div>
+            </div>
+
+            <!-- Mobile Header -->
+            <div class="md:hidden flex justify-between items-center">
+                <div class="w-8">
+                    <!-- Empty div for spacing -->
+                </div>
+                <h1 class="text-xl font-bold"><a href="#home"
+                        class="block hover:text-gray-600 nick-name-data">FUFA</a></h1>
+                <button class="w-8" id="menuButton">
+                    <!-- menu icon -->
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M4 5C3.44772 5 3 5.44772 3 6C3 6.55228 3.44772 7 4 7H20C20.5523 7 21 6.55228 21 6C21 5.44772 20.5523 5 20 5H4ZM7 12C7 11.4477 7.44772 11 8 11H20C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13H8C7.44772 13 7 12.5523 7 12ZM13 18C13 17.4477 13.4477 17 14 17H20C20.5523 17 21 17.4477 21 18C21 18.5523 20.5523 19 20 19H14C13.4477 19 13 18.5523 13 18Z"
+                            fill="#ffffff" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden" id="mobileMenu">
+            <div
+                class="px-4 py-3 space-y-3 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 backdrop-blur-3xl">
+                <a href="#about" class="block underline hover:text-gray-600">About</a>
+                <a href="#experience" class="block underline hover:text-gray-600">Experience</a>
+                <a href="#education" class="block underline hover:text-gray-600">Education</a>
+                <a href="#project" class="block underline hover:text-gray-600">Project</a>
+                <a href="#article" class="block underline hover:text-gray-600">Article</a>
+                <a href="#certification" class="block underline hover:text-gray-600">Certification</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center">
+            <div class="container mx-auto px-4 text-right">
+                <h1 class="text-5xl md:text-8xl font-bold mb-6" id="name-data">BUDIMAN DARMONO</h1>
+                <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8" id="position-data">Developer</p>
+            </div>
+            <button id="scrollToAbout"
+                class="absolute bottom-2 bg-black text-white py-2 px-4 rounded-full hover:bg-gray-800 dark:bg-gray-50 dark:text-black dark:hover:bg-gray-200 transition-colors animate-bounce ">
+                Start
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block ml-2" viewBox="0 0 20 20"
+                    fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8">About Me</h2>
+                <p id="about-data" class="text-gray-600 dark:text-gray-400 max-w-2xl"></p>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
+            <div class="pt-36 pb-24">
+                <h2 class="text-3xl font-bold text-center">Experience</h2>
+            </div>
+            <div class="flex-grow flex items-start justify-center relative">
+                <div class="container mx-auto px-4 py-8 max-h-[calc(100vh-400px)] overflow-y-auto">
+                    <div class="space-y-8 relative" id="experience-list-data">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
+            <div class="pt-36 pb-24">
+                <h2 class="text-3xl font-bold text-center">Education</h2>
+            </div>
+            <div class="flex-grow flex items-start justify-center relative">
+                <div class="container mx-auto px-4 py-8 max-h-[calc(100vh-400px)] overflow-y-auto">
+                    <div class="space-y-8 relative" id="education-list-data">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Section -->
+        <section id="project" class="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto px-4">
+                <div class="pt-36 pb-24">
+                    <h2 class="text-3xl font-bold text-center">Project</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="project-list-data"></div>
+                <div class="pt-12 text-right">
+                    <!-- <a href="#" class="">Random</a> -->
+                    <a href="#" class="">View All</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Article Section -->
+        <section id="article" class="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto px-4">
+                <div class="pt-36 pb-24">
+                    <h2 class="text-3xl font-bold text-center">Article</h2>
+                </div>
+                <div class="grid grid-cols-1 gap-6" id="article-list-data"></div>
+                <div class="pt-12 text-right">
+                    <!-- <a href="#" class="">Random</a> -->
+                    <a href="#" class="">View All</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certification Section -->
+        <section id="certification" class="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto px-4">
+                <div class="pt-36 pb-24">
+                    <h2 class="text-3xl font-bold text-center">Certification</h2>
+                </div>
+                <div class="flex-grow flex items-start justify-center relative">
+                    <div class="container mx-auto px-4 py-8 max-h-[calc(100vh-400px)] overflow-y-auto">
+                        <div class="space-y-8 relative" id="certification-list-data"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="min-h-screen flex items-center justify-center bg-black text-gray-200">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row">
+                <!-- Left Section: Email Form -->
+                <div class="w-full md:w-1/2 pr-0 md:pr-8 mb-8 md:mb-0">
+                    <h2 class="text-3xl font-bold mb-8 text-center">Message Me</h2>
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block mb-2">Name</label>
+                            <input type="text" class="w-full p-2 border border-gray-200 rounded text-black">
+                        </div>
+                        <div>
+                            <label class="block mb-2">Email</label>
+                            <input type="email" class="w-full p-2 border border-gray-200 rounded text-black">
+                        </div>
+                        <div>
+                            <label class="block mb-2">Message</label>
+                            <textarea class="w-full p-2 border border-gray-200 rounded text-black" rows="4"></textarea>
+                        </div>
+                        <div class="flex justify-center">
+                            <button type="submit"
+                                class="w-full md:w-1/3 bg-white text-black py-2 px-4 rounded hover:bg-gray-200 transition-colors">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Right Section: Social Media Icons -->
+                <div class="w-full md:w-1/2 pl-0 md:pl-8">
+                    <h2 class="text-3xl font-bold mb-8 text-center">Contact Me</h2>
+                    <div class="text-center space-y-4 mb-8">
+                        <span class="text-2xl">Social Media</span>
+                        <div id="social-media-data"></div>
+                    </div>
+                    <div class="text-center space-y-4 mb-8">
+                        <span class="text-2xl">Email</span>
+                        <div id="email-data"></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer"
+        class="fixed bottom-0 w-full bg-black text-white py-4 transform translate-y-full transition-transform duration-300 ease-in-out">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center space-x-8">
+                <!-- Kiri -->
+                <div class="flex flex-1 items-center space-x-4">
+                    <!-- Dark mode button -->
+                    <button id="darkModeBtn" class="hover:text-gray-400 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                    </button>
+
+                    <!-- Language selector -->
+                    <button id="languageBtn" class="hover:text-gray-400 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.1 3 18.192" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Tengah -->
+                <div class="flex flex-1 justify-center">
+                    <button id="scrollToContact" class="relative group">
+                        <span class="relative z-10">Contact</span>
+                        <span
+                            class="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-3 w-3 ml-1 inline-block animate-bounce group-hover:animate-none" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Kanan -->
+                <div class="flex flex-1 justify-end space-x-4">
+                    <p>&copy; <span id="copyright-year">
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>
+                        </span></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="hidden">
+        <p>&copy;
+            <script>
+                document.write(new Date().getFullYear())
+            </script>
+        </p>
+        <div class="flex space-x-4">
+            <button id="scrollToContact"
+                class="absolute bottom-2 bg-black text-white py-2 px-4 rounded-full hover:bg-gray-800 transition-colors">
+                Contact
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block ml-2" viewBox="0 0 20 20"
+                    fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script src="src/js/index.js"></script>
+    <script src="src/js/darkmode.js"></script>
+    <script src="src/js/data-loader.js"></script>
+
+    <!-- template -->
+    <div class="hidden">
+        <span id="social-media-link-component"><b><a id="social-media-link-component-url" href="#" target="_blank">
+                    <span id="social-media-link-component-name"></span>
+                </a></b></span>
+
+
+        <div class="border-l-2 border-gray-200 dark:border-gray-800 pl-4" id="experience-card-component">
+            <h3 class="font-bold" id="experience-card-title"></h3>
+            <p class="text-gray-600 dark:text-gray-400"><span id="experience-card-company"></span> <b>|</b> <span
+                    id="experience-card-year"></span></p>
+            <p class="mt-2" id="experience-card-job-desc"></p>
+        </div>
+
+        <div class="border-l-2 border-gray-200 dark:border-gray-800 pl-4" id="education-card-component">
+            <h3 class="font-bold" id="education-card-major"></h3>
+            <p class="text-gray-600  dark:text-gray-400"><span id="education-card-name"></span> <b>|</b> <span
+                    id="education-card-year"></span></p>
+        </div>
+
+        <div class="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 p-6 rounded-lg shadow-md"
+            id="project-card-component">
+            <img src="#" alt="" class="w-full h-48 object-cover" id="project-card-image">
+            <h3 class="font-bold mb-2 text-xl" id="project-card-title"></h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-4" id="project-card-desc"></p>
+            <a href="#" class="text-blue-500 hover:underline">View Project</a>
+        </div>
+
+        <div class="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 p-6 rounded-lg"
+            id="article-card-component">
+            <h3 class="font-bold mb-2" id="article-card-title"></h3>
+            <div class="relative">
+                <p class="text-gray-600 dark:text-gray-400 line-clamp-1" id="article-card-content"></p>
+            </div>
+        </div>
+
+        <div class="border border-gray-200 dark:border-gray-800 p-6 rounded-lg bg-white dark:bg-black"
+            id="certification-card-component">
+            <h3 class="font-bold" id="certification-card-title"></h3>
+            <p class="text-gray-800 dark:text-gray-200" id="certification-card-credential"></p>
+            <p class="text-gray-600 dark:text-gray-400"><span id="certification-card-publisher"></span><span
+                    id="certification-card-year"></span></p>
+        </div>
+
+    </div>
+</body>
+
+</html>

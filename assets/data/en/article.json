@@ -1,0 +1,27 @@
+[
+  {
+      "title": "Introduction to Python Programming",
+      "content": "Python adalah bahasa pemrograman yang populer karena sintaks yang mudah dipahami dan mendukung berbagai aplikasi.",
+      "url": "https://example.com/"
+  },
+  {
+      "title": "Getting Started with JavaScript",
+      "content": "JavaScript adalah bahasa yang digunakan untuk membuat halaman web interaktif dan dinamis.",
+      "url": "https://example.com/"
+  },
+  {
+      "title": "Understanding Object-Oriented Programming in Java",
+      "content": "Artikel ini membahas dasar-dasar OOP dalam bahasa Java dan contoh implementasinya.",
+      "url": "https://example.com/"
+  },
+  {
+      "title": "Exploring Data Science with R",
+      "content": "R adalah bahasa yang kuat untuk analisis data dan visualisasi dalam proyek data science.",
+      "url": "https://example.com/"
+  },
+  {
+      "title": "Building Web Applications with Django",
+      "content": "Django adalah framework web berbasis Python yang digunakan untuk membuat aplikasi web cepat dan aman.",
+      "url": "https://example.com/"
+  }
+]
