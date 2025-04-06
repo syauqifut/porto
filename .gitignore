@@ -1,2 +1,4 @@
 assets/data/*
 !assets/data/default/
+node_modules
+.env
