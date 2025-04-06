@@ -1,0 +1,71 @@
+[
+    {
+        "id": 1,
+        "title": "Membuat Buku Matematika Terapan",
+        "desc": "Making a Matematika Terapan book with word and then convert to pdf format",
+        "img": "membuat_buku_matematika_terapan_cover.png",
+        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
+    },
+    {
+        "id": 2,
+        "title": "Penetatrion Testing On Kopi Kenangan",
+        "desc": "Full report of penetapan testing on Kopi Kenangan Jakarta Selatan in order to achieve certification",
+        "img": "pentest_kopi_kenangan.png",
+        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
+    },
+    {
+        "id": 3,
+        "title": "Pelatihan Pemrograman Dasar",
+        "desc": "Membuat materi dasar pemrograman Python untuk pemula, mencakup variabel, fungsi, dan kontrol alur",
+        "img": "pelatihan_pemrograman_dasar.png",
+        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
+    },
+    {
+        "id": 4,
+        "title": "Workshop Desain Grafis",
+        "desc": "Panduan dan materi untuk workshop desain grafis dasar dengan aplikasi Canva dan Photoshop",
+        "img": "workshop_desain_grafis.png",
+        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
+    },
+    {
+        "id": 5,
+        "title": "Panduan Budidaya Padi Organik",
+        "desc": "E-book panduan lengkap untuk budidaya padi organik, dari persiapan lahan hingga panen",
+        "img": "panduan_budidaya_padi_organik.png",
+        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
+    },
+    {
+        "id": 6,
+        "title": "Laporan Hasil Panen Jagung di Jawa Barat",
+        "desc": "Analisis hasil panen jagung di beberapa wilayah Jawa Barat sebagai bahan evaluasi produktivitas",
+        "img": "laporan_hasil_panen_jagung.png",
+        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
+    },
+    {
+        "id": 7,
+        "title": "Sejarah Kereta Api di Indonesia",
+        "desc": "Buku sejarah tentang perkembangan kereta api di Indonesia dari masa kolonial hingga saat ini",
+        "img": "sejarah_kereta_api_indonesia.png",
+        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
+    },
+    {
+        "id": 8,
+        "title": "Analisis Puisi Chairil Anwar",
+        "desc": "Studi mendalam mengenai tema dan gaya bahasa dalam puisi-puisi karya Chairil Anwar",
+        "img": "analisis_puisi_chairil_anwar.png",
+        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
+    },{
+        "id": 9,
+        "title": "Perkembangan Sastra Modern Indonesia",
+        "desc": "Laporan tentang evolusi kesusastraan Indonesia di era modern dan pengaruh globalisasi",
+        "img": "perkembangan_sastra_modern_indonesia.png",
+        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
+    },
+    {
+        "id": 10,
+        "title": "Membaca Karya Sastra Dunia",
+        "desc": "Panduan untuk memahami karya sastra klasik dari berbagai belahan dunia, seperti karya Shakespeare dan Tolstoy",
+        "img": "membaca_karya_sastra_dunia.png",
+        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
+    }
+]

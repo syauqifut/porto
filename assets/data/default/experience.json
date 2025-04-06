@@ -1,0 +1,49 @@
+[
+    {
+        "id": 1,
+        "company_name": "PT Mencari Cinta Sejati",
+        "employment_type": null,
+        "position": "Graphic Designer",
+        "location": "Imogiri",
+        "location_type": "On-site",
+        "year": {
+            "start": "July 1625",
+            "end": "January 1645"
+        },
+        "job_desc": [
+            "Making poster for Sultan Agung's greatness for every town",
+            "Ilustrating Mataram's army in war"
+        ]
+    },
+    {
+        "id": 2,
+        "company_name": "Self-employed",
+        "employment_type": "Freelance",
+        "position": "History writer",
+        "location": "Java Island",
+        "location_type": "Hybrid",
+        "year": {
+            "start": "July 1576",
+            "end": "Present"
+        },
+        "job_desc": [
+            "Writing history from the founding of the Mataram kingdom, greatness, betrayal, dualism, to the destruction of the empire.",
+            "Writing how Indonesia become independent"
+        ]
+    },
+    {
+        "id": 3,
+        "company_name": "PT XYZ",
+        "employment_type": "Contract",
+        "position": "Jongos",
+        "location": "Hindia-Belanda",
+        "location_type": "On-site",
+        "year": {
+            "start": "July 1885",
+            "end": "January 1901"
+        },
+        "job_desc": [
+            "Membantu tuan"
+        ]
+    }
+]

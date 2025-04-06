@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Sakura School Simulator",
+    "major": "Management",
+    "year": {
+        "start": "July 2012",
+        "end": "May 2013"
+    },
+    "gpa": 3.15
+  },
+  {
+    "id": 2,
+    "name": "Alexandria University",
+    "major": "Business Administration",
+    "year": {
+        "start": "July 2014",
+        "end": "May 2019"
+    },
+    "gpa": 2.3
+  },
+  {
+    "id": 2,
+    "name": "Universal Institute of Professional Management",
+    "major": "Honoral",
+    "year": {
+        "start": "July 2024",
+        "end": "Present"
+    },
+    "gpa": null
+  }
+]
