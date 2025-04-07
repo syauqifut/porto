@@ -102,7 +102,8 @@ function loadData(lang) {
         ).innerHTML = `${experience.year.start} - ${experience.year.end}`;
         let jobDescHTML = "";
         experience.job_desc.forEach((jobDesc) => {
-          jobDescHTML += `${jobDesc}<br>`;
+            // const formatted = 
+          jobDescHTML += richTextFormatGenerator(jobDesc);
         });
         experienceComponent.querySelector(
           "#experience-card-job-desc"
@@ -229,4 +230,8 @@ function loadData(lang) {
       document.getElementById("certification-list-data").innerHTML =
         certificationHTML;
     });
+}
+
+function richTextFormatGenerator(string){
+    return `${string.replace(/_(.*?)_/g, "<i>$1</i>").replace(/\*(.*?)\*/g, "<b>$1</b>")}<br>`;
 }
