@@ -1,4 +1,4 @@
-let lang = import.meta.env.VITE_LANG;
+let lang = "default";
 
 const languageBtn = document.getElementById("languageBtn");
 languageBtn.addEventListener("click", () => {
@@ -7,17 +7,21 @@ languageBtn.addEventListener("click", () => {
   } else if (lang === "id") {
     lang = "en";
   }
-  console.log("lang in event", lang);
   loadData(lang);
 });
 
-const validLangs = ["default", "id", "en"];
-if (!validLangs.includes(lang)) {
-  alert("Invalid language setting. Back to default");
-  lang = "default";
+try {
+  const envLang = import.meta.env?.VITE_LANG;
+  if (["default", "id", "en"].includes(envLang)) {
+    lang = envLang;
+  } else {
+    alert("Invalid language setting. Back to default");
+  }
+} catch (e) {
+  console.warn("VITE_LANG not found, using default");
 }
+
 loadData(lang);
-console.log(lang);
 function loadData(lang) {
   // Personal data
   fetch(`assets/data/${lang}/personal.json`)
