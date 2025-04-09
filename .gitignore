@@ -3,3 +3,5 @@ assets/data/*
 node_modules
 .env
 dist
+assets/img/projects/
+env.js

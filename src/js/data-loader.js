@@ -1,27 +1,12 @@
-let lang = "default";
+let lang = window.__ENV__.LANG ?? "default";
+loadData(lang);
 
 const languageBtn = document.getElementById("languageBtn");
 languageBtn.addEventListener("click", () => {
-  if (lang === "en") {
-    lang = "id";
-  } else if (lang === "id") {
-    lang = "en";
-  }
+  lang = lang === "en" ? "id" : "en";
   loadData(lang);
 });
 
-try {
-  const envLang = import.meta.env?.VITE_LANG;
-  if (["default", "id", "en"].includes(envLang)) {
-    lang = envLang;
-  } else {
-    alert("Invalid language setting. Back to default");
-  }
-} catch (e) {
-  console.warn("VITE_LANG not found, using default");
-}
-
-loadData(lang);
 function loadData(lang) {
   // Personal data
   fetch(`assets/data/${lang}/personal.json`)
@@ -106,7 +91,7 @@ function loadData(lang) {
         ).innerHTML = `${experience.year.start} - ${experience.year.end}`;
         let jobDescHTML = "";
         experience.job_desc.forEach((jobDesc) => {
-            // const formatted = 
+          // const formatted =
           jobDescHTML += richTextFormatGenerator(jobDesc);
         });
         experienceComponent.querySelector(
@@ -236,6 +221,8 @@ function loadData(lang) {
     });
 }
 
-function richTextFormatGenerator(string){
-    return `${string.replace(/_(.*?)_/g, "<i>$1</i>").replace(/\*(.*?)\*/g, "<b>$1</b>")}<br>`;
+function richTextFormatGenerator(string) {
+  return `${string
+    .replace(/_(.*?)_/g, "<i>$1</i>")
+    .replace(/\*(.*?)\*/g, "<b>$1</b>")}<br>`;
 }
