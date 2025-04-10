@@ -37,7 +37,7 @@ function loadData(lang) {
         profSocialMediaHTML += socialMediaComponent.outerHTML;
       });
       document.getElementById("profesional-internet-data").innerHTML = `
-        ${profUsername} in ${profSocialMediaHTML}
+        Profesional using ${profUsername} in ${profSocialMediaHTML}
         `;
 
       // Profesional Social Media Section
@@ -57,7 +57,7 @@ function loadData(lang) {
         PerSocialMediaHTML += socialMediaComponent.outerHTML;
       });
       document.getElementById("personal-internet-data").innerHTML = `
-        ${PerUsername} in ${PerSocialMediaHTML}
+        Personal life using ${PerUsername} in ${PerSocialMediaHTML}
         `;
 
       // Email Section
