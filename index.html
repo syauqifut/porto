@@ -350,10 +350,10 @@
         <div class="absolute inset-0 bg-black bg-opacity-50"></div>
         
         <!-- Modal content -->
-        <div class="relative w-[90%] h-[90%] mx-auto mt-[5vh] bg-white dark:bg-black rounded-lg shadow-xl overflow-hidden">
+        <div class="relative w-[90%] h-[90%] mx-auto mt-[5vh] bg-white dark:bg-gray-900 rounded-lg shadow-xl overflow-hidden">
             <!-- Modal header -->
             <div class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-800">
-                <h2 class="text-2xl font-bold text-center">All Projects</h2>
+                <h2 class="text-2xl font-bold text-center text-gray-900 dark:text-white">All Projects</h2>
                 <button class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200" onclick="projectModal.close()">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -363,8 +363,35 @@
 
             <!-- Modal body -->
             <div class="p-6 overflow-y-auto h-[calc(100%-8rem)]">
-                <div id="project-modal-content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Tags Section -->
+                <div class="mb-6">
+                    <h3 class="text-lg mb-3 text-gray-900 dark:text-white">Tags</h3>
+                    <div id="project-tags" class="flex flex-wrap gap-2">
+                        <!-- Tags will be dynamically inserted here -->
+                    </div>
+                </div>
+                <div id="project-modal-content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     <!-- Project cards will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Card Template -->
+    <div id="project-card-template">
+        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 h-full flex flex-col">
+            <div class="relative h-48 overflow-hidden">
+                <img class="w-full h-full object-cover" src="" alt="">
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white"></h3>
+                <div class="h-20 overflow-hidden mb-4">
+                    <p class="text-gray-600 dark:text-gray-300 line-clamp-3"></p>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-4 tags-container"></div>
+                <div class="mt-auto flex justify-between items-end links-container">
+                    <div class="github-link"></div>
+                    <div class="app-link"></div>
                 </div>
             </div>
         </div>
