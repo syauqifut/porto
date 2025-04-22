@@ -2,21 +2,5 @@
     "name": "Raden Wiraguna Jayaningrat",
     "nickname": "Wiraguna",
     "position": "Expert Java Developer",
-    "about": "I Mastering Java since kids, so I know what to do.",
-    "contact": {
-        "email": "contact@rwj.com",
-        "phone": "081234567890",
-        "address": "Jln. A Desa B Kecamatan C Kota D Provinsi E",
-        "profesional_account": "rwjaya",
-        "profesional_media": [
-            {"name": "X", "url": "https://x.com/setting"},
-            {"name": "Instagram", "url": "https://www.linkedin.com/setting/"},
-            {"name": "Facebook", "url": "https://facebook.com/setting/"}
-        ],
-        "personal_account": "rwj27",
-        "personal_media": [
-            {"name": "X", "url": "https://x.com/setting"},
-            {"name": "Facebook", "url": "https://facebook.com/setting/"}
-        ]
-    }
+    "about": "I Mastering Java since kids, so I know what to do."
 }

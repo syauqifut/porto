@@ -5,3 +5,4 @@ node_modules
 dist
 assets/img/projects/
 env.js
+**/.DS_Store

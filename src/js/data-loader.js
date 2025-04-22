@@ -8,6 +8,10 @@ languageBtn.addEventListener("click", () => {
 });
 
 function loadData(lang) {
+  let uniLang = 'default';
+  if (lang != 'default') {
+    uniLang = 'uni';
+  }
   // Personal data
   fetch(`assets/data/${lang}/personal.json`)
     .then((res) => res.json())
@@ -15,60 +19,68 @@ function loadData(lang) {
       document.getElementById("name-data").textContent =
         data.name.toUpperCase();
       document.getElementById("position-data").textContent = data.position;
-      document.getElementById("about-data").textContent = data.about;
+      document.getElementById("about-data").textContent = richTextFormatGenerator(data.about);
       document.querySelectorAll(".nick-name-data").forEach((element) => {
         element.innerHTML = data.nickname.toUpperCase();
       });
-
-      // Profesional Social Media Section
-      const profUsername = `<b>@${data.contact.profesional_account}</b>`;
-      let profSocialMediaHTML = "";
-      data.contact.profesional_media.forEach((socialMedia, index) => {
-        let socialMediaComponent = document
-          .getElementById("social-media-link-component")
-          .cloneNode(true);
-        socialMediaComponent.querySelector(
-          "#social-media-link-component-url"
-        ).href = `${socialMedia.url}`;
-        socialMediaComponent.querySelector(
-          "#social-media-link-component-name"
-        ).innerHTML = `${socialMedia.name}`;
-        if (index !== 0) profSocialMediaHTML += ` | `;
-        profSocialMediaHTML += socialMediaComponent.outerHTML;
-      });
-      document.getElementById("profesional-internet-data").innerHTML = `
-        Profesional using ${profUsername} in ${profSocialMediaHTML}
-        `;
-
-      // Profesional Social Media Section
-      const PerUsername = `<b>@${data.contact.personal_account}</b>`;
-      let PerSocialMediaHTML = "";
-      data.contact.personal_media.forEach((socialMedia, index) => {
-        let socialMediaComponent = document
-          .getElementById("social-media-link-component")
-          .cloneNode(true);
-        socialMediaComponent.querySelector(
-          "#social-media-link-component-url"
-        ).href = `${socialMedia.url}`;
-        socialMediaComponent.querySelector(
-          "#social-media-link-component-name"
-        ).innerHTML = `${socialMedia.name}`;
-        if (index !== 0) PerSocialMediaHTML += ` | `;
-        PerSocialMediaHTML += socialMediaComponent.outerHTML;
-      });
-      document.getElementById("personal-internet-data").innerHTML = `
-        Personal life using ${PerUsername} in ${PerSocialMediaHTML}
-        `;
-
-      // Email Section
-      const email = data.contact.email;
-      document.getElementById("email-data").innerHTML = `
-        Email to <b><a href="mailto:${email}">${email}</a></b>
-        `;
     })
     .catch((error) => {
       console.error("Error fetching: ", error);
     });
+
+    // Contact data
+  fetch(`assets/data/${uniLang}/contact.json`)
+  .then((res) => res.json())
+  .then((data) => {
+    // Profesional Social Media Section
+    const profUsername = `<b>@${data.profesional_account}</b>`;
+    let profSocialMediaHTML = "";
+    data.profesional_media.forEach((socialMedia, index) => {
+      let socialMediaComponent = document
+        .getElementById("social-media-link-component")
+        .cloneNode(true);
+      socialMediaComponent.querySelector(
+        "#social-media-link-component-url"
+      ).href = `${socialMedia.url}`;
+      socialMediaComponent.querySelector(
+        "#social-media-link-component-name"
+      ).innerHTML = `${socialMedia.name}`;
+      if (index !== 0) profSocialMediaHTML += ` | `;
+      profSocialMediaHTML += socialMediaComponent.outerHTML;
+    });
+    document.getElementById("profesional-internet-data").innerHTML = `
+      Profesional using ${profUsername} in ${profSocialMediaHTML}
+      `;
+
+    // Profesional Social Media Section
+    const PerUsername = `<b>@${data.personal_account}</b>`;
+    let PerSocialMediaHTML = "";
+    data.personal_media.forEach((socialMedia, index) => {
+      let socialMediaComponent = document
+        .getElementById("social-media-link-component")
+        .cloneNode(true);
+      socialMediaComponent.querySelector(
+        "#social-media-link-component-url"
+      ).href = `${socialMedia.url}`;
+      socialMediaComponent.querySelector(
+        "#social-media-link-component-name"
+      ).innerHTML = `${socialMedia.name}`;
+      if (index !== 0) PerSocialMediaHTML += ` | `;
+      PerSocialMediaHTML += socialMediaComponent.outerHTML;
+    });
+    document.getElementById("personal-internet-data").innerHTML = `
+      Personal life using ${PerUsername} in ${PerSocialMediaHTML}
+      `;
+
+    // Email Section
+    const email = data.email;
+    document.getElementById("email-data").innerHTML = `
+      Email to <b><a href="mailto:${email}">${email}</a></b>
+      `;
+  })
+  .catch((error) => {
+    console.error("Error fetching: ", error);
+  });
 
   // Experience data
   fetch(`assets/data/${lang}/experience.json`)
@@ -161,7 +173,7 @@ function loadData(lang) {
     });
 
   // Article data
-  fetch(`assets/data/${lang}/article.json`)
+  fetch(`assets/data/${uniLang}/article.json`)
     .then((res) => res.json())
     .then((data) => {
       const articleData = data.sort(() => 0.5 - Math.random()).slice(0, 3); //coming soon - limit 3 project in function, can call in random button
@@ -185,7 +197,7 @@ function loadData(lang) {
     });
 
   // Certificate data
-  fetch(`assets/data/${lang}/certification.json`)
+  fetch(`assets/data/${uniLang}/certification.json`)
     .then((res) => res.json())
     .then((data) => {
       let certificationData = data;
