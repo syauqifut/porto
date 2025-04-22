@@ -1,8 +1,7 @@
 assets/data/*
 !assets/data/default/
 node_modules
-.env
 dist
 assets/img/projects/
-env.js
+config.js
 **/.DS_Store
