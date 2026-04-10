@@ -269,5 +269,5 @@ window.projectModal = {
   open: openProjectShowModal,
   close: closeProjectShowModal,
   closeDetail: switchToList,
-  openDetail: openProjectShowModal
+  openDetail: openProjectDetail
 };

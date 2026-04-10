@@ -164,7 +164,7 @@ function loadData(lang) {
         projectComponent.querySelector("#project-card-image").alt = project.title;
 
         projectComponent.onclick = () => {
-          projectModal.openDetail(project);
+          projectModal.open(project);
         };
 
         container.appendChild(projectComponent);
