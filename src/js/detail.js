@@ -17,6 +17,11 @@ function openProjectShowModal(directProject = null) {
   };
   document.addEventListener("keydown", document._projectEscHandler);
 
+  document._projectOutsideHandler = (e) => {
+    if (!modal.classList.contains("hidden") && !e.target.closest("#project-modal")) {
+      projectModal.close();
+    }
+  };
   setTimeout(() => {
     document.addEventListener("click", document._projectOutsideHandler);
   }, 0);

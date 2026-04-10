@@ -21,7 +21,7 @@ const heroSection = document.getElementById('home');
 const contactSection = document.getElementById('contact');
 const contactButton = document.getElementById('scrollToContact');
 
-window.addEventListener('scroll', () => {
+function updateVisibility() {
     const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
     const contactTop = contactSection.offsetTop;
     const contactBottom = contactTop + contactSection.offsetHeight;
@@ -29,17 +29,11 @@ window.addEventListener('scroll', () => {
 
     // In hero section
     if (currentScroll < heroBottom) {
-        // navbar.classList.remove('nav-visible');
-        // navbar.classList.add('nav-hidden');
-
         navbar.classList.remove('translate-y-0');
         navbar.classList.add('-translate-y-full');
         footer.classList.remove('translate-y-0');
         footer.classList.add('translate-y-full');
     } else {
-        // navbar.classList.remove('nav-hidden');
-        // navbar.classList.add('nav-visible');
-
         navbar.classList.remove('-translate-y-full');
         navbar.classList.add('translate-y-0');
         footer.classList.remove('translate-y-full');
@@ -54,7 +48,11 @@ window.addEventListener('scroll', () => {
     }
 
     lastScroll = currentScroll;
-});
+}
+
+window.addEventListener('scroll', updateVisibility);
+window.addEventListener('load', updateVisibility);
+updateVisibility();
 
 // Scroll to ... section
 document.getElementById('scrollToAbout').addEventListener('click', function (e) {
