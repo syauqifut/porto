@@ -70,3 +70,9 @@ document.getElementById('scrollToContact').addEventListener('click', function (e
         behavior: 'smooth'
     });
 });
+
+// Read all. Article Section
+const mediumUsername = window.__ENV__?.MEDIUM_USERNAME;
+if (mediumUsername) {
+    document.getElementById('article-read-all').href = `https://medium.com/@${mediumUsername}`;
+}

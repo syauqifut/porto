@@ -151,13 +151,13 @@
         <!-- Article Section -->
         <section id="article" class="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
             <div class="container mx-auto px-4">
-                <div class="pt-36 pb-24">
+                <div class="pt-36 pb-12">
                     <h2 class="text-3xl font-bold text-center">Article</h2>
                 </div>
                 <div class="grid grid-cols-1 gap-6" id="article-list-data"></div>
                 <div class="pt-12 text-right">
                     <!-- <a href="#" class="">Random</a> -->
-                    <a href="#" class="">View All</a>
+                    <a href="#" id="article-read-all" class="">Read All</a>
                 </div>
             </div>
         </section>
@@ -328,13 +328,17 @@
             <a href="#" class="text-blue-500 hover:underline">View Project</a>
         </div>
 
-        <div class="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 p-6 rounded-lg"
+        <a class="py-6 border-b border-gray-200 dark:border-gray-800 group cursor-pointer"
             id="article-card-component">
-            <h3 class="font-bold mb-2" id="article-card-title"></h3>
-            <div class="relative">
-                <p class="text-gray-600 dark:text-gray-400 line-clamp-1" id="article-card-content"></p>
-            </div>
-        </div>
+            <h3 class="font-semibold text-lg mb-2 group-hover:underline"
+                id="article-card-title"></h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2"
+            id="article-card-content"></p>
+            <span class="text-sm text-gray-500 dark:text-gray-500 group-hover:text-black dark:group-hover:text-white transition">
+                Read more →
+            </span>
+        </a>
+
 
         <div class="border border-gray-200 dark:border-gray-800 p-6 rounded-lg bg-white dark:bg-black"
             id="certification-card-component">

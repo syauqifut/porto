@@ -178,7 +178,9 @@ function loadData(lang) {
   fetch(`assets/${dir}/article.json`)
     .then((res) => res.json())
     .then((data) => {
-      const articleData = data.sort(() => 0.5 - Math.random()).slice(0, 3); //coming soon - limit 3 project in function, can call in random button
+      const articleData = [...data]
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .slice(0, 3);
 
       let articleHTML = "";
       articleData.forEach((article) => {
@@ -187,10 +189,14 @@ function loadData(lang) {
           .cloneNode(true);
         articleComponent.querySelector(
           "#article-card-title"
-        ).innerHTML = `${article.title}`;
+        ).innerText = `${article.title}`;
         articleComponent.querySelector(
           "#article-card-content"
-        ).innerHTML = `${article.content}`;
+        ).innerText = `${article.excerpt}`;
+
+        articleComponent.href = article.link;
+        articleComponent.target = "_blank";
+        articleComponent.rel = "noopener noreferrer";
 
         articleHTML += articleComponent.outerHTML;
       });
