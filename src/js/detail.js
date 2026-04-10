@@ -1,170 +1,268 @@
-function openProjectShowModal() {
+function openProjectShowModal(directProject = null) {
   const modal = document.getElementById("project-modal");
-  // modal.style.display = 'block';
+  const modalContent = modal.querySelector(".modal-content");
   modal.classList.remove("hidden");
 
-  // Clear existing content
-  const projectsContainer = document.getElementById("project-modal-content");
-  const tagsContainer = document.getElementById("project-tags");
-  if (projectsContainer) projectsContainer.innerHTML = "";
-  if (tagsContainer) tagsContainer.innerHTML = "";
+  // Lock scroll
+  document.body.style.overflow = "hidden";
 
-  fetchAndDisplayProjects();
+  modalContent.classList.remove("modal-slide-out");
+  modalContent.classList.add("modal-slide-in");
+
+  document.getElementById("project-modal-content").innerHTML = "";
+  document.getElementById("project-tags").innerHTML = "";
+
+  document._projectEscHandler = (e) => {
+    if (e.key === "Escape") projectModal.close();
+  };
+  document.addEventListener("keydown", document._projectEscHandler);
+
+  setTimeout(() => {
+    document.addEventListener("click", document._projectOutsideHandler);
+  }, 0);
+
+  fetchAndDisplayProjects(directProject ? () => projectModal.openDetail(directProject) : null);
 }
 
 function closeProjectShowModal() {
   const modal = document.getElementById("project-modal");
-  // modal.style.display = 'hidden';
-  modal.classList.add("hidden");
+  const modalContent = modal.querySelector(".modal-content");
+
+  modalContent.classList.remove("modal-slide-in");
+  modalContent.classList.add("modal-slide-out");
+
+  modalContent.addEventListener("animationend", () => {
+    modal.classList.add("hidden");
+    switchToList();
+    document.body.style.overflow = "";
+  }, { once: true });
+
+  // Unlock scroll
+  document.body.style.overflow = "";
+
+  if (document._projectEscHandler) {
+    document.removeEventListener("keydown", document._projectEscHandler);
+    document._projectEscHandler = null;
+  }
+
+  if (document._projectOutsideHandler) {
+    document.removeEventListener("click", document._projectOutsideHandler);
+    document._projectOutsideHandler = null;
+  }
 }
 
-function fetchAndDisplayProjects() {
-  fetch("assets/data/en/project.json")
-    .then((response) => response.json())
+function switchToList() {
+  document.getElementById("modal-header-list").classList.remove("hidden");
+  document.getElementById("modal-header-list").classList.add("flex");
+  document.getElementById("modal-header-detail").classList.add("hidden");
+  document.getElementById("modal-header-detail").classList.remove("flex");
+  document.getElementById("modal-filter-bar").classList.remove("hidden");
+  document.getElementById("modal-body-list").classList.remove("hidden");
+  document.getElementById("modal-body-detail").classList.add("hidden");
+}
+
+function switchToDetail() {
+  document.getElementById("modal-header-list").classList.add("hidden");
+  document.getElementById("modal-header-list").classList.remove("flex");
+  document.getElementById("modal-header-detail").classList.remove("hidden");
+  document.getElementById("modal-header-detail").classList.add("flex");
+  document.getElementById("modal-filter-bar").classList.add("hidden");
+  document.getElementById("modal-body-list").classList.add("hidden");
+  document.getElementById("modal-body-detail").classList.remove("hidden");
+}
+
+function openProjectDetail(project) {
+  switchToDetail();
+
+  const uiLang = window.__ENV__?.LANG === "en" ? "en" : "id";
+  const descText =
+    project.desc && typeof project.desc === "object" && "id" in project.desc
+      ? project.desc[uiLang]
+      : project.desc;
+
+  document.getElementById("modal-detail-title").textContent = project.title;
+  document.getElementById("detail-desc").textContent = descText;
+
+  const img = document.getElementById("detail-img");
+  img.src = `assets/img/projects/${project.img}`;
+  img.alt = project.title;
+
+  // Tags
+  const tagsEl = document.getElementById("detail-tags");
+  tagsEl.innerHTML = "";
+  project.tag.forEach((tag) => {
+    const span = document.createElement("span");
+    span.className =
+      "px-2.5 py-0.5 text-xs rounded-full border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800";
+    span.textContent = tag;
+    tagsEl.appendChild(span);
+  });
+
+  // Links
+  const linksEl = document.getElementById("detail-links");
+  linksEl.innerHTML = "";
+
+  const gitUrl = project.url?.git ?? project.url_git;
+  if (gitUrl) {
+    const a = document.createElement("a");
+    a.href = gitUrl;
+    a.target = "_blank";
+    a.className =
+      "text-xs px-3.5 py-1.5 rounded-md border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-gray-500 transition-colors";
+    a.innerHTML = '<i class="fab fa-github mr-1"></i>GitHub';
+    linksEl.appendChild(a);
+  }
+
+  const appUrl = project.url?.app ?? project.url_app;
+  if (appUrl) {
+    const a = document.createElement("a");
+    a.href = appUrl;
+    a.target = "_blank";
+    a.className =
+      "text-xs px-3.5 py-1.5 rounded-md border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-gray-500 transition-colors";
+    a.innerHTML = '<i class="fas fa-external-link-alt mr-1"></i>Visit App';
+    linksEl.appendChild(a);
+  }
+}
+
+function fetchAndDisplayProjects(onReady) {
+  fetch(`assets/data/project.json`)
+    .then((r) => r.json())
     .then((projects) => {
-      const projectsContainer = document.getElementById(
-        "project-modal-content"
-      );
-      if (!projectsContainer) return;
-
-      // Get all unique tags
       const allTags = new Set();
-      projects.forEach((project) => {
-        project.tag.forEach((tag) => {
-          allTags.add(tag);
-        });
-      });
+      projects.forEach((p) => p.tag.forEach((t) => allTags.add(t)));
 
-      // Display tags
       const tagsContainer = document.getElementById("project-tags");
       const sortedTags = Array.from(allTags).sort();
-      
-      // Add "All" tag
-      const allTagButton = document.createElement("button");
-      allTagButton.className = "px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors active dark:bg-blue-600 dark:hover:bg-blue-700";
-      allTagButton.textContent = "All";
-      allTagButton.onclick = () => {
-        // Reset all tags to inactive
-        document.querySelectorAll("#project-tags button").forEach(btn => {
-          if (btn.textContent !== "All") {
-            btn.classList.remove("active", "bg-blue-500", "text-white", "dark:bg-blue-600");
-            btn.classList.add("bg-gray-200", "text-gray-700", "dark:bg-gray-700", "dark:text-gray-300");
-          }
+
+      const allBtn = document.createElement("button");
+      allBtn.className =
+        "px-3 py-1 text-xs rounded-full bg-gray-900 text-white dark:bg-white dark:text-gray-900 transition-colors flex-shrink-0";
+      allBtn.textContent = "All";
+      allBtn.dataset.active = "true";
+      allBtn.onclick = () => {
+        tagsContainer.querySelectorAll("button").forEach((b) => {
+          b.dataset.active = "false";
+          b.className =
+            "px-3 py-1 text-xs rounded-full border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-gray-500 transition-colors flex-shrink-0";
         });
-        // Set "All" as active
-        allTagButton.classList.add("active", "bg-blue-500", "text-white", "dark:bg-blue-600");
+        allBtn.dataset.active = "true";
+        allBtn.className =
+          "px-3 py-1 text-xs rounded-full bg-gray-900 text-white dark:bg-white dark:text-gray-900 transition-colors flex-shrink-0";
         filterProjects(projects, []);
       };
-      tagsContainer.appendChild(allTagButton);
+      tagsContainer.appendChild(allBtn);
 
-      // Add other tags
-      sortedTags.forEach(tag => {
-        const tagButton = document.createElement("button");
-        tagButton.className = "px-4 py-2 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition-colors dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600";
-        tagButton.textContent = tag;
-        tagButton.onclick = () => {
-          // Toggle active state
-          tagButton.classList.toggle("active");
-          tagButton.classList.toggle("bg-blue-500");
-          tagButton.classList.toggle("text-white");
-          tagButton.classList.toggle("bg-gray-200");
-          tagButton.classList.toggle("text-gray-700");
-          tagButton.classList.toggle("dark:bg-blue-600");
-          tagButton.classList.toggle("dark:bg-gray-700");
-          tagButton.classList.toggle("dark:text-gray-300");
+      sortedTags.forEach((tag) => {
+        const btn = document.createElement("button");
+        btn.className =
+          "px-3 py-1 text-xs rounded-full border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-gray-500 transition-colors flex-shrink-0";
+        btn.textContent = tag;
+        btn.dataset.active = "false";
+        btn.onclick = () => {
+          btn.dataset.active = btn.dataset.active === "true" ? "false" : "true";
 
-          // Get all active tags
-          const activeTags = Array.from(document.querySelectorAll("#project-tags button.active"))
-            .filter(btn => btn.textContent !== "All")
-            .map(btn => btn.textContent);
+          const activeTags = Array.from(
+            tagsContainer.querySelectorAll("button[data-active='true']"),
+          )
+            .map((b) => b.textContent)
+            .filter((t) => t !== "All");
 
-          // If no tags are selected, show all projects
+          // Sync style
+          tagsContainer.querySelectorAll("button").forEach((b) => {
+            if (b.textContent === "All") return;
+            if (b.dataset.active === "true") {
+              b.className =
+                "px-3 py-1 text-xs rounded-full bg-gray-900 text-white dark:bg-white dark:text-gray-900 transition-colors flex-shrink-0";
+            } else {
+              b.className =
+                "px-3 py-1 text-xs rounded-full border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-gray-500 transition-colors flex-shrink-0";
+            }
+          });
+
           if (activeTags.length === 0) {
-            allTagButton.classList.add("active", "bg-blue-500", "text-white", "dark:bg-blue-600");
-            filterProjects(projects, []);
+            allBtn.dataset.active = "true";
+            allBtn.className =
+              "px-3 py-1 text-xs rounded-full bg-gray-900 text-white dark:bg-white dark:text-gray-900 transition-colors flex-shrink-0";
           } else {
-            allTagButton.classList.remove("active", "bg-blue-500", "text-white", "dark:bg-blue-600");
-            allTagButton.classList.add("bg-gray-200", "text-gray-700", "dark:bg-gray-700", "dark:text-gray-300");
-            filterProjects(projects, activeTags);
+            allBtn.dataset.active = "false";
+            allBtn.className =
+              "px-3 py-1 text-xs rounded-full border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-gray-500 transition-colors flex-shrink-0";
           }
+
+          filterProjects(projects, activeTags);
         };
-        tagsContainer.appendChild(tagButton);
+        tagsContainer.appendChild(btn);
       });
 
-      // Initial display of all projects
       displayProjects(projects);
+      if (onReady) onReady(projects);
     })
-    .catch((error) => {
-      console.error("Error fetching projects:", error);
-    });
+    .catch((err) => console.error("Error fetching projects:", err));
 }
 
 function displayProjects(projects) {
-  const projectsContainer = document.getElementById("project-modal-content");
-  projectsContainer.innerHTML = "";
-
+  const container = document.getElementById("project-modal-content");
+  container.innerHTML = "";
   const template = document.getElementById("project-card-template");
+
+  const uiLang = window.__ENV__?.LANG === "en" ? "en" : "id";
 
   projects.forEach((project) => {
     const card = template.cloneNode(true);
+    card.id = "";
+    card.classList.remove("hidden");
 
-    // Set image
     const img = card.querySelector("img");
     img.src = `assets/img/projects/${project.img}`;
     img.alt = project.title;
 
-    // Set title
     card.querySelector("h3").textContent = project.title;
 
-    // Set description
-    card.querySelector("p").textContent = project.desc;
+    const descText =
+      project.desc && typeof project.desc === "object" && "id" in project.desc
+        ? project.desc[uiLang]
+        : project.desc;
+    card.querySelector("p").textContent = descText;
 
-    // Set tags
-    const tagsContainer = card.querySelector(".tags-container");
-    project.tag.forEach((tag) => {
-      const tagSpan = document.createElement("span");
-      tagSpan.className =
-        "px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm";
-      tagSpan.textContent = tag;
-      tagsContainer.appendChild(tagSpan);
+    // Chips — max 3 visible, sisanya +N more
+    const tagsEl = card.querySelector(".tags-container");
+    const maxVisible = 3;
+    project.tag.slice(0, maxVisible).forEach((tag) => {
+      const span = document.createElement("span");
+      span.className =
+        "px-1.5 py-0.5 text-[10px] rounded-full border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-800 flex-shrink-0";
+      span.textContent = tag;
+      tagsEl.appendChild(span);
     });
 
-    // Set links
-    const githubLinkContainer = card.querySelector(".github-link");
-    const appLinkContainer = card.querySelector(".app-link");
-
-    if (project.url_git) {
-      const gitLink = document.createElement("a");
-      gitLink.href = project.url_git;
-      gitLink.target = "_blank";
-      gitLink.className = "text-gray-600 hover:text-gray-800";
-      gitLink.innerHTML = '<i class="fab fa-github"></i> GitHub';
-      githubLinkContainer.appendChild(gitLink);
+    if (project.tag.length > maxVisible) {
+      const more = document.createElement("span");
+      more.className =
+        "text-[10px] text-gray-400 dark:text-gray-500 flex-shrink-0";
+      more.textContent = `+${project.tag.length - maxVisible} more`;
+      tagsEl.appendChild(more);
     }
 
-    if (project.url_app) {
-      const appLink = document.createElement("a");
-      appLink.href = project.url_app;
-      appLink.target = "_blank";
-      appLink.className = "text-blue-600 hover:text-blue-800";
-      appLink.innerHTML = '<i class="fas fa-external-link-alt"></i> Visit App';
-      appLinkContainer.appendChild(appLink);
-    }
+    // Klik card → buka detail
+    card.querySelector(".project-card").onclick = () =>
+      openProjectDetail(project);
 
-    projectsContainer.appendChild(card);
+    container.appendChild(card);
   });
 }
 
 function filterProjects(projects, selectedTags) {
-  // Filter projects
-  const filteredProjects = selectedTags.length > 0
-    ? projects.filter(project => selectedTags.every(tag => project.tag.includes(tag)))
-    : projects;
-
-  displayProjects(filteredProjects);
+  const filtered =
+    selectedTags.length > 0
+      ? projects.filter((p) => selectedTags.every((t) => p.tag.includes(t)))
+      : projects;
+  displayProjects(filtered);
 }
 
 window.projectModal = {
   open: openProjectShowModal,
   close: closeProjectShowModal,
+  closeDetail: switchToList,
+  openDetail: openProjectShowModal
 };

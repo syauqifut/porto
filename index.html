@@ -320,12 +320,12 @@
                     id="education-card-year"></span></p>
         </div>
 
-        <div class="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 p-6 rounded-lg shadow-md"
-            id="project-card-component">
-            <img src="#" alt="" class="w-full h-48 object-cover" id="project-card-image">
+        <div class="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 p-6 rounded-lg shadow-md cursor-pointer hover:border-gray-400 dark:hover:border-gray-600 transition-colors"
+            id="project-card-component"
+            onclick="">
+            <img src="#" alt="" class="w-full h-48 object-cover rounded-md mb-4" id="project-card-image">
             <h3 class="font-bold mb-2 text-xl" id="project-card-title"></h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-4" id="project-card-desc"></p>
-            <a href="#" class="text-blue-500 hover:underline">View Project</a>
+            <p class="text-gray-600 dark:text-gray-400 line-clamp-3" id="project-card-desc"></p>
         </div>
 
         <a class="py-6 border-b border-gray-200 dark:border-gray-800 group cursor-pointer"
@@ -349,55 +349,106 @@
         </div>
 
     </div>
-    <div id="project-modal" class="fixed inset-0 z-99 hidden">
-        <!-- Modal backdrop -->
-        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-        
-        <!-- Modal content -->
-        <div class="relative w-[90%] h-[90%] mx-auto mt-[5vh] bg-white dark:bg-gray-900 rounded-lg shadow-xl overflow-hidden">
-            <!-- Modal header -->
-            <div class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-800">
-                <h2 class="text-2xl font-bold text-center text-gray-900 dark:text-white">All Projects</h2>
-                <button class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200" onclick="projectModal.close()">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
 
-            <!-- Modal body -->
-            <div class="p-6 overflow-y-auto h-[calc(100%-8rem)]">
-                <!-- Tags Section -->
-                <div class="mb-6">
-                    <h3 class="text-lg mb-3 text-gray-900 dark:text-white">Tags</h3>
-                    <div id="project-tags" class="flex flex-wrap gap-2">
-                        <!-- Tags will be dynamically inserted here -->
-                    </div>
-                </div>
-                <div id="project-modal-content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    <!-- Project cards will be dynamically inserted here -->
-                </div>
-            </div>
+    <!-- Project Modal -->
+    <div id="project-modal" class="fixed inset-x-0 top-[52px] bottom-[52px] z-99 hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-50" onclick="projectModal.close()"></div>
+
+        <div class="modal-content relative w-full h-full bg-white dark:bg-gray-900 shadow-2xl overflow-hidden flex flex-col" onclick="event.stopPropagation()">
+
+        <!-- Header list -->
+        <div id="modal-header-list" class="flex items-center px-5 py-3 border-b border-gray-100 dark:border-gray-800 flex-shrink-0">
+          <div class="w-16"></div>
+          <h2 class="flex-1 text-center text-xs font-semibold tracking-widest uppercase text-gray-500 dark:text-gray-400">
+            All Projects
+          </h2>
+          <div class="w-16 flex justify-end">
+            <button
+              onclick="projectModal.close()"
+              class="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
         </div>
+
+        <!-- Header detail -->
+        <div id="modal-header-detail" class="hidden items-center px-5 py-3 border-b border-gray-100 dark:border-gray-800 flex-shrink-0">
+          <div class="w-16">
+            <button
+              onclick="projectModal.closeDetail()"
+              class="flex items-center gap-1 text-xs font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+              Back
+            </button>
+          </div>
+          <h2 id="modal-detail-title" class="flex-1 text-center text-xs font-semibold tracking-widest uppercase text-gray-500 dark:text-gray-400"></h2>
+          <div class="w-16 flex justify-end">
+            <button
+              onclick="projectModal.close()"
+              class="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition-colors"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter tags (hanya di list) -->
+        <div id="modal-filter-bar" class="px-5 py-2.5 border-b border-gray-100 dark:border-gray-800 overflow-x-auto flex-shrink-0">
+          <div id="project-tags" class="flex gap-2 flex-nowrap"></div>
+        </div>
+
+        <!-- Body list -->
+        <div id="modal-body-list" class="flex-1 overflow-y-auto p-5">
+          <div id="project-modal-content" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3"></div>
+        </div>
+
+        <!-- Body detail -->
+        <div id="modal-body-detail" class="hidden flex-1 overflow-y-auto">
+          <div class="p-6 max-w-4xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+              <img
+                id="detail-img"
+                src=""
+                alt=""
+                class="w-full aspect-video object-cover rounded-xl bg-gray-100 dark:bg-gray-800 shadow-md"
+              />
+              <div class="space-y-5">
+                <p id="detail-desc" class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed"></p>
+                <div>
+                  <p class="text-xs font-semibold tracking-widest uppercase text-gray-400 dark:text-gray-500 mb-2.5">
+                    Tech Stack
+                  </p>
+                  <div id="detail-tags" class="flex flex-wrap gap-1.5"></div>
+                </div>
+                <div id="detail-links" class="flex flex-wrap gap-2 pt-1"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
+  
 
     <!-- Project Card Template -->
-    <div id="project-card-template">
-        <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 h-full flex flex-col">
-            <div class="relative h-48 overflow-hidden">
-                <img class="w-full h-full object-cover" src="" alt="">
-            </div>
-            <div class="p-6 flex flex-col flex-grow">
-                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white"></h3>
-                <div class="h-20 overflow-hidden mb-4">
-                    <p class="text-gray-600 dark:text-gray-300 line-clamp-3"></p>
-                </div>
-                <div class="flex flex-wrap gap-2 mb-4 tags-container"></div>
-                <div class="mt-auto flex justify-between items-end links-container">
-                    <div class="github-link"></div>
-                    <div class="app-link"></div>
-                </div>
-            </div>
+    <div id="project-card-template" class="hidden">
+        <div class="project-card bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden cursor-pointer hover:border-gray-400 dark:hover:border-gray-500 transition-colors">
+        <div class="relative overflow-hidden">
+            <img class="w-full aspect-video object-cover" src="" alt="">
+        </div>
+        <div class="p-2.5">
+            <h3 class="text-xs font-medium text-gray-900 dark:text-white mb-1 truncate"></h3>
+            <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2 mb-2"></p>
+            <div class="tags-container flex gap-1 flex-nowrap overflow-hidden items-center"></div>
+        </div>
         </div>
     </div>
 </body>

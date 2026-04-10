@@ -149,29 +149,26 @@ function loadData(lang) {
   fetch(`assets/${dir}/project.json`)
     .then((res) => res.json())
     .then((data) => {
-      const projectData = data.sort(() => 0.5 - Math.random()).slice(0, 3); //coming soon - limit 3 project in function, can call in random button
-      let projectHTML = "";
+      const projectData = data.sort(() => 0.5 - Math.random()).slice(0, 3);
+      const container = document.getElementById("project-list-data");
+      container.innerHTML = "";
+
       projectData.forEach((project) => {
         let projectComponent = document
           .getElementById("project-card-component")
           .cloneNode(true);
-        projectComponent.querySelector(
-          "#project-card-title"
-        ).innerHTML = `${project.title}`;
-        projectComponent.querySelector(
-          "#project-card-desc"
-        ).innerHTML = `${localize(project.desc, lang)}`;
-        projectComponent.querySelector(
-          "#project-card-image"
-        ).src = `assets/img/projects/${project.img}`;
-        projectComponent.querySelector(
-          "#project-card-image"
-        ).alt = `${project.title}`;
 
-        projectHTML += projectComponent.outerHTML;
+        projectComponent.querySelector("#project-card-title").innerHTML = project.title;
+        projectComponent.querySelector("#project-card-desc").innerHTML = localize(project.desc, lang);
+        projectComponent.querySelector("#project-card-image").src = `assets/img/projects/${project.img}`;
+        projectComponent.querySelector("#project-card-image").alt = project.title;
+
+        projectComponent.onclick = () => {
+          projectModal.openDetail(project);
+        };
+
+        container.appendChild(projectComponent);
       });
-
-      document.getElementById("project-list-data").innerHTML = projectHTML;
     });
 
   // Article data
