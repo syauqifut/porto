@@ -1,4 +1,4 @@
-let lang = window.__ENV__.LANG ?? "default";
+let lang = window.__ENV__.LANG ?? "data-example";
 loadData(lang);
 
 const languageBtn = document.getElementById("languageBtn");
@@ -8,18 +8,20 @@ languageBtn.addEventListener("click", () => {
 });
 
 function loadData(lang) {
-  let uniLang = 'default';
-  if (lang != 'default') {
-    uniLang = 'uni';
+  let dir = 'data-example';
+  if (lang != 'data-example') {
+    dir = 'data';
   }
   // Personal data
-  fetch(`assets/data/${lang}/personal.json`)
+  fetch(`assets/${dir}/personal.json`)
     .then((res) => res.json())
     .then((data) => {
       document.getElementById("name-data").textContent =
         data.name.toUpperCase();
       document.getElementById("position-data").textContent = data.position;
-      document.getElementById("about-data").textContent = richTextFormatGenerator(data.about);
+      document.getElementById("about-data").textContent = richTextFormatGenerator(
+        localize(data.about, lang)
+      );
       document.querySelectorAll(".nick-name-data").forEach((element) => {
         element.innerHTML = data.nickname.toUpperCase();
       });
@@ -29,7 +31,7 @@ function loadData(lang) {
     });
 
     // Contact data
-  fetch(`assets/data/${uniLang}/contact.json`)
+  fetch(`assets/${dir}/contact.json`)
   .then((res) => res.json())
   .then((data) => {
     // Profesional Social Media Section
@@ -83,7 +85,7 @@ function loadData(lang) {
   });
 
   // Experience data
-  fetch(`assets/data/${lang}/experience.json`)
+  fetch(`assets/${dir}/experience.json`)
     .then((res) => res.json())
     .then((data) => {
       const experienceData = data;
@@ -102,8 +104,8 @@ function loadData(lang) {
           "#experience-card-year"
         ).innerHTML = `${experience.year.start} - ${experience.year.end}`;
         let jobDescHTML = "";
-        experience.job_desc.forEach((jobDesc) => {
-          // const formatted =
+        const jobLines = localize(experience.job_desc, lang);
+        (Array.isArray(jobLines) ? jobLines : []).forEach((jobDesc) => {
           jobDescHTML += richTextFormatGenerator(jobDesc);
         });
         experienceComponent.querySelector(
@@ -118,7 +120,7 @@ function loadData(lang) {
     });
 
   // Education data
-  fetch(`assets/data/${lang}/education.json`)
+  fetch(`assets/${dir}/education.json`)
     .then((res) => res.json())
     .then((data) => {
       const educationData = data;
@@ -129,7 +131,7 @@ function loadData(lang) {
           .cloneNode(true);
         educationComponent.querySelector(
           "#education-card-major"
-        ).innerHTML = `${education.major}`;
+        ).innerHTML = `${localize(education.major, lang)}`;
         educationComponent.querySelector(
           "#education-card-name"
         ).innerHTML = `${education.name}`;
@@ -144,7 +146,7 @@ function loadData(lang) {
     });
 
   // Project data
-  fetch(`assets/data/${lang}/project.json`)
+  fetch(`assets/${dir}/project.json`)
     .then((res) => res.json())
     .then((data) => {
       const projectData = data.sort(() => 0.5 - Math.random()).slice(0, 3); //coming soon - limit 3 project in function, can call in random button
@@ -158,7 +160,7 @@ function loadData(lang) {
         ).innerHTML = `${project.title}`;
         projectComponent.querySelector(
           "#project-card-desc"
-        ).innerHTML = `${project.desc}`;
+        ).innerHTML = `${localize(project.desc, lang)}`;
         projectComponent.querySelector(
           "#project-card-image"
         ).src = `assets/img/projects/${project.img}`;
@@ -173,7 +175,7 @@ function loadData(lang) {
     });
 
   // Article data
-  fetch(`assets/data/${uniLang}/article.json`)
+  fetch(`assets/${dir}/article.json`)
     .then((res) => res.json())
     .then((data) => {
       const articleData = data.sort(() => 0.5 - Math.random()).slice(0, 3); //coming soon - limit 3 project in function, can call in random button
@@ -197,7 +199,7 @@ function loadData(lang) {
     });
 
   // Certificate data
-  fetch(`assets/data/${uniLang}/certification.json`)
+  fetch(`assets/${dir}/certification.json`)
     .then((res) => res.json())
     .then((data) => {
       let certificationData = data;
@@ -231,6 +233,18 @@ function loadData(lang) {
       document.getElementById("certification-list-data").innerHTML =
         certificationHTML;
     });
+}
+
+function localize(value, lang) {
+  if (
+    value &&
+    typeof value === "object" &&
+    "id" in value &&
+    "en" in value
+  ) {
+    return lang === "en" ? value.en : value.id;
+  }
+  return value;
 }
 
 function richTextFormatGenerator(string) {
