@@ -7,5 +7,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "sync:articles": "node scripts/sync-articles.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
   }
 }

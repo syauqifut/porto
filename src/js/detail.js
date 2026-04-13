@@ -1,3 +1,6 @@
+import { loadConfig } from '../../utils/load-config.js';
+const config = await loadConfig();
+
 function openProjectShowModal(directProject = null) {
   const modal = document.getElementById("project-modal");
   const modalContent = modal.querySelector(".modal-content");
@@ -79,7 +82,7 @@ function switchToDetail() {
 function openProjectDetail(project) {
   switchToDetail();
 
-  const uiLang = window.__ENV__?.LANG === "en" ? "en" : "id";
+  const uiLang = config.LANG === "en" ? "en" : "id";
   const descText =
     project.desc && typeof project.desc === "object" && "id" in project.desc
       ? project.desc[uiLang]
@@ -211,7 +214,7 @@ function displayProjects(projects) {
   container.innerHTML = "";
   const template = document.getElementById("project-card-template");
 
-  const uiLang = window.__ENV__?.LANG === "en" ? "en" : "id";
+  const uiLang = config.LANG === "en" ? "en" : "id";
 
   projects.forEach((project) => {
     const card = template.cloneNode(true);

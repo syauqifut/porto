@@ -1,4 +1,0 @@
-window.__ENV__ = {
-  LANG: "default",
-  MEDIUM_USERNAME: ""
-};

@@ -1,3 +1,6 @@
+import { loadConfig } from '../../utils/load-config.js';
+const config = await loadConfig();
+
 // Mobile menu toggle
 const menuButton = document.getElementById('menuButton');
 const mobileMenu = document.getElementById('mobileMenu');
@@ -70,7 +73,7 @@ document.getElementById('scrollToContact').addEventListener('click', function (e
 });
 
 // Read all. Article Section
-const mediumUsername = window.__ENV__?.MEDIUM_USERNAME;
+const mediumUsername = config.MEDIUM_USERNAME;
 if (mediumUsername) {
     document.getElementById('article-read-all').href = `https://medium.com/@${mediumUsername}`;
 }

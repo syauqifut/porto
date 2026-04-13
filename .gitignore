@@ -3,5 +3,5 @@ assets/data/*
 node_modules
 dist
 assets/img/projects/
-config.js
+.env
 **/.DS_Store

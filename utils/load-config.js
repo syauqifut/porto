@@ -1,10 +1,22 @@
-const fs = require("fs");
-const path = require("path");
+let cachedConfig = null;
 
-const configPath = path.join(__dirname, "../config.js");
-const configContent = fs.readFileSync(configPath, "utf8");
+export async function loadConfig() {
+  if (cachedConfig) return cachedConfig;
 
-const windowMock = {};
-new Function("window", configContent)(windowMock);
+  try {
+    const res = await fetch('/config');
+    const data = await res.json();
 
-module.exports = windowMock.__ENV__ || {};
+    cachedConfig = data;
+    return data;
+  } catch (err) {
+    console.error('Failed to load config');
+
+    cachedConfig = {
+      LANG: 'default',
+      MEDIUM_USERNAME: ''
+    };
+
+    return cachedConfig;
+  }
+}

@@ -1,4 +1,7 @@
-let lang = window.__ENV__.LANG ?? "data-example";
+import { loadConfig } from '../../utils/load-config.js';
+const config = await loadConfig();
+
+let lang = config.LANG ?? "data-example";
 loadData(lang);
 
 const languageBtn = document.getElementById("languageBtn");
