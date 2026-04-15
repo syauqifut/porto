@@ -1,5 +1,15 @@
 import { loadConfig } from '../../utils/load-config.js';
 const config = await loadConfig();
+let isProjectViewTransitioning = false;
+
+function clearProjectViewAnimationClasses(el) {
+  el.classList.remove(
+    "modal-slide-left-out",
+    "modal-slide-left-in",
+    "modal-slide-right-out",
+    "modal-slide-right-in",
+  );
+}
 
 function openProjectShowModal(directProject = null) {
   const modal = document.getElementById("project-modal");
@@ -29,7 +39,14 @@ function openProjectShowModal(directProject = null) {
     document.addEventListener("click", document._projectOutsideHandler);
   }, 0);
 
-  fetchAndDisplayProjects(directProject ? () => projectModal.openDetail(directProject) : null);
+  if (directProject) {
+    openProjectDetail(directProject, { animate: false });
+    fetchAndDisplayProjects();
+    return;
+  }
+
+  switchToList(false);
+  fetchAndDisplayProjects();
 }
 
 function closeProjectShowModal() {
@@ -41,7 +58,7 @@ function closeProjectShowModal() {
 
   modalContent.addEventListener("animationend", () => {
     modal.classList.add("hidden");
-    switchToList();
+    switchToList(false);
     document.body.style.overflow = "";
   }, { once: true });
 
@@ -59,41 +76,157 @@ function closeProjectShowModal() {
   }
 }
 
-function switchToList() {
-  document.getElementById("modal-header-list").classList.remove("hidden");
-  document.getElementById("modal-header-list").classList.add("flex");
-  document.getElementById("modal-header-detail").classList.add("hidden");
-  document.getElementById("modal-header-detail").classList.remove("flex");
-  document.getElementById("modal-filter-bar").classList.remove("hidden");
-  document.getElementById("modal-body-list").classList.remove("hidden");
-  document.getElementById("modal-body-detail").classList.add("hidden");
+function switchToList(animate = true) {
+  const headerList = document.getElementById("modal-header-list");
+  const headerDetail = document.getElementById("modal-header-detail");
+  const filterBar = document.getElementById("modal-filter-bar");
+  const bodyList = document.getElementById("modal-body-list");
+  const bodyDetail = document.getElementById("modal-body-detail");
+
+  if (!animate) {
+    clearProjectViewAnimationClasses(bodyList);
+    clearProjectViewAnimationClasses(bodyDetail);
+    bodyList.classList.remove("hidden");
+    bodyDetail.classList.add("hidden");
+    headerList.classList.remove("hidden");
+    headerList.classList.add("flex");
+    headerDetail.classList.add("hidden");
+    headerDetail.classList.remove("flex");
+    filterBar.classList.remove("hidden");
+    isProjectViewTransitioning = false;
+    return;
+  }
+
+  if (isProjectViewTransitioning || bodyDetail.classList.contains("hidden")) return;
+  isProjectViewTransitioning = true;
+
+  clearProjectViewAnimationClasses(bodyList);
+  clearProjectViewAnimationClasses(bodyDetail);
+
+  bodyDetail.classList.remove("hidden");
+  bodyDetail.classList.add("modal-slide-right-out");
+
+  bodyDetail.addEventListener(
+    "animationend",
+    () => {
+      clearProjectViewAnimationClasses(bodyDetail);
+      bodyDetail.classList.add("hidden");
+
+      headerDetail.classList.add("hidden");
+      headerDetail.classList.remove("flex");
+      headerList.classList.remove("hidden");
+      headerList.classList.add("flex");
+      filterBar.classList.remove("hidden");
+
+      bodyList.classList.remove("hidden");
+      bodyList.classList.add("modal-slide-right-in");
+
+      bodyList.addEventListener(
+        "animationend",
+        () => {
+          clearProjectViewAnimationClasses(bodyList);
+          isProjectViewTransitioning = false;
+        },
+        { once: true },
+      );
+    },
+    { once: true },
+  );
 }
 
-function switchToDetail() {
-  document.getElementById("modal-header-list").classList.add("hidden");
-  document.getElementById("modal-header-list").classList.remove("flex");
-  document.getElementById("modal-header-detail").classList.remove("hidden");
-  document.getElementById("modal-header-detail").classList.add("flex");
-  document.getElementById("modal-filter-bar").classList.add("hidden");
-  document.getElementById("modal-body-list").classList.add("hidden");
-  document.getElementById("modal-body-detail").classList.remove("hidden");
+function switchToDetail(animate = true) {
+  const headerList = document.getElementById("modal-header-list");
+  const headerDetail = document.getElementById("modal-header-detail");
+  const filterBar = document.getElementById("modal-filter-bar");
+  const bodyList = document.getElementById("modal-body-list");
+  const bodyDetail = document.getElementById("modal-body-detail");
+
+  if (!animate) {
+    clearProjectViewAnimationClasses(bodyList);
+    clearProjectViewAnimationClasses(bodyDetail);
+    bodyList.classList.add("hidden");
+    bodyDetail.classList.remove("hidden");
+    headerList.classList.add("hidden");
+    headerList.classList.remove("flex");
+    headerDetail.classList.remove("hidden");
+    headerDetail.classList.add("flex");
+    filterBar.classList.add("hidden");
+    isProjectViewTransitioning = false;
+    return;
+  }
+
+  if (isProjectViewTransitioning || bodyList.classList.contains("hidden")) return;
+  isProjectViewTransitioning = true;
+
+  clearProjectViewAnimationClasses(bodyList);
+  clearProjectViewAnimationClasses(bodyDetail);
+
+  bodyList.classList.remove("hidden");
+  bodyList.classList.add("modal-slide-left-out");
+
+  bodyList.addEventListener(
+    "animationend",
+    () => {
+      clearProjectViewAnimationClasses(bodyList);
+      bodyList.classList.add("hidden");
+
+      headerList.classList.add("hidden");
+      headerList.classList.remove("flex");
+      headerDetail.classList.remove("hidden");
+      headerDetail.classList.add("flex");
+      filterBar.classList.add("hidden");
+
+      bodyDetail.classList.remove("hidden");
+      bodyDetail.classList.add("modal-slide-left-in");
+
+      bodyDetail.addEventListener(
+        "animationend",
+        () => {
+          clearProjectViewAnimationClasses(bodyDetail);
+          isProjectViewTransitioning = false;
+        },
+        { once: true },
+      );
+    },
+    { once: true },
+  );
 }
 
-function openProjectDetail(project) {
-  switchToDetail();
+function getLocalizedValue(value, uiLang) {
+  if (value && typeof value === "object") {
+    return value[uiLang] ?? value.id ?? value.en ?? "";
+  }
+  return value ?? "";
+}
+
+function openProjectDetail(project, options = {}) {
+  if (options.animate === false) {
+    switchToDetail(false);
+  } else {
+    if (isProjectViewTransitioning) return;
+    switchToDetail(true);
+  }
 
   const uiLang = config.LANG === "en" ? "en" : "id";
-  const descText =
-    project.desc && typeof project.desc === "object" && "id" in project.desc
-      ? project.desc[uiLang]
-      : project.desc;
+  const descText = getLocalizedValue(project.desc, uiLang);
+  const yearText = getLocalizedValue(project.year, uiLang);
+  const roleText = project.role ?? "";
+  const statusText = getLocalizedValue(project.status, uiLang);
 
-  document.getElementById("modal-detail-title").textContent = project.title;
+  const titleWithYear = yearText ? `${project.title} (${yearText})` : project.title;
+  document.getElementById("modal-detail-title").textContent = titleWithYear;
   document.getElementById("detail-desc").textContent = descText;
 
   const img = document.getElementById("detail-img");
   img.src = `assets/img/projects/${project.img}`;
   img.alt = project.title;
+
+  const detailMeta = document.getElementById("detail-meta");
+  const roleEl = document.getElementById("detail-role");
+  const statusEl = document.getElementById("detail-status");
+  roleEl.textContent = roleText ? `Role: ${roleText}` : "";
+  statusEl.textContent = statusText ? `Status: ${statusText}` : "";
+  detailMeta.classList.toggle("hidden", !roleText && !statusText);
 
   // Tags
   const tagsEl = document.getElementById("detail-tags");
@@ -110,7 +243,7 @@ function openProjectDetail(project) {
   const linksEl = document.getElementById("detail-links");
   linksEl.innerHTML = "";
 
-  const gitUrl = project.url?.git ?? project.url_git;
+  const gitUrl = project.url?.git;
   if (gitUrl) {
     const a = document.createElement("a");
     a.href = gitUrl;
@@ -121,7 +254,7 @@ function openProjectDetail(project) {
     linksEl.appendChild(a);
   }
 
-  const appUrl = project.url?.app ?? project.url_app;
+  const appUrl = project.url?.app;
   if (appUrl) {
     const a = document.createElement("a");
     a.href = appUrl;
@@ -129,6 +262,17 @@ function openProjectDetail(project) {
     a.className =
       "text-xs px-3.5 py-1.5 rounded-md border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-gray-500 transition-colors";
     a.innerHTML = '<i class="fas fa-external-link-alt mr-1"></i>Visit App';
+    linksEl.appendChild(a);
+  }
+
+  const demoUrl = project.url?.demo;
+  if (demoUrl) {
+    const a = document.createElement("a");
+    a.href = demoUrl;
+    a.target = "_blank";
+    a.className =
+      "text-xs px-3.5 py-1.5 rounded-md border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-gray-500 transition-colors";
+    a.innerHTML = '<i class="fas fa-external-link-alt mr-1"></i>View Demo';
     linksEl.appendChild(a);
   }
 }
@@ -233,7 +377,7 @@ function displayProjects(projects) {
         : project.desc;
     card.querySelector("p").textContent = descText;
 
-    // Chips — max 3 visible, sisanya +N more
+    // Chips - max 3 visible, sisanya +N more
     const tagsEl = card.querySelector(".tags-container");
     const maxVisible = 3;
     project.tag.slice(0, maxVisible).forEach((tag) => {
@@ -252,7 +396,7 @@ function displayProjects(projects) {
       tagsEl.appendChild(more);
     }
 
-    // Klik card → buka detail
+    // Klik card -> buka detail
     card.querySelector(".project-card").onclick = () =>
       openProjectDetail(project);
 
@@ -271,6 +415,6 @@ function filterProjects(projects, selectedTags) {
 window.projectModal = {
   open: openProjectShowModal,
   close: closeProjectShowModal,
-  closeDetail: switchToList,
+  closeDetail: () => switchToList(true),
   openDetail: openProjectDetail
 };

@@ -33,7 +33,7 @@ section {
       opacity: 1;
     }
     to {
-      transform: translateY(-100%);
+      transform: translateY(100%);
       opacity: 0;
     }
   }
@@ -55,4 +55,64 @@ section {
 
 .modal-slide-out {
   animation: slideOut 0.35s cubic-bezier(0.55, 0, 0.85, 0.25) forwards;
+}
+
+@keyframes slideLeftOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideLeftIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideRightOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideRightIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.modal-slide-left-out {
+  animation: slideLeftOut 0.28s cubic-bezier(0.55, 0, 0.85, 0.25) forwards;
+}
+
+.modal-slide-left-in {
+  animation: slideLeftIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.modal-slide-right-out {
+  animation: slideRightOut 0.28s cubic-bezier(0.55, 0, 0.85, 0.25) forwards;
+}
+
+.modal-slide-right-in {
+  animation: slideRightIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
