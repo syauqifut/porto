@@ -116,3 +116,15 @@ section {
 .modal-slide-right-in {
   animation: slideRightIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
+
+/* Hide horizontal scrollbar on mobile project carousel (still swipeable) */
+@media (max-width: 767px) {
+  #project-list-data {
+    -ms-overflow-style: none; /* IE and old Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  #project-list-data::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+}

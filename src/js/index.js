@@ -77,3 +77,81 @@ const mediumUsername = config.MEDIUM_USERNAME;
 if (mediumUsername) {
     document.getElementById('article-read-all').href = `https://medium.com/@${mediumUsername}`;
 }
+
+// Dot navigation in mobile project section
+let projectCardsObserver;
+
+function initProjectDots() {
+  const container = document.getElementById('project-list-data');
+  const dotsContainer = document.getElementById('project-dots');
+
+  if (!container || !dotsContainer) return;
+
+  const cards = Array.from(container.children);
+
+  if (projectCardsObserver) {
+    projectCardsObserver.disconnect();
+  }
+
+  // reset dots
+  dotsContainer.innerHTML = '';
+
+  if (!cards.length) return;
+
+  // create dots
+  cards.forEach((_, index) => {
+    const dot = document.createElement('div');
+    dot.className = 'w-2 h-2 rounded-full bg-gray-400 transition-colors';
+    dot.dataset.index = index;
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = dotsContainer.children;
+
+  // observer
+  projectCardsObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = cards.indexOf(entry.target);
+
+          // update active dot
+          Array.from(dots).forEach((dot, i) => {
+            dot.classList.toggle('bg-black', i === index);
+            dot.classList.toggle('dark:bg-white', i === index);
+
+            dot.classList.toggle('bg-gray-400', i !== index);
+          });
+        }
+      });
+    },
+    {
+      root: container,
+      threshold: 0.6
+    }
+  );
+
+  // set first dot as active at start
+  Array.from(dots).forEach((dot, i) => {
+    dot.classList.toggle('bg-black', i === 0);
+    dot.classList.toggle('dark:bg-white', i === 0);
+    dot.classList.toggle('bg-gray-400', i !== 0);
+  });
+
+  // observe each card
+  cards.forEach((card) => projectCardsObserver.observe(card));
+}
+
+initProjectDots();
+
+// re-init when project data changes (e.g. after fetch or change language)
+const projectListContainer = document.getElementById('project-list-data');
+if (projectListContainer) {
+  const projectListMutationObserver = new MutationObserver(() => {
+    initProjectDots();
+  });
+
+  projectListMutationObserver.observe(projectListContainer, {
+    childList: true
+  });
+}

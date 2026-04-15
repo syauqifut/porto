@@ -109,12 +109,12 @@
         </section>
 
         <!-- Experience Section -->
-        <section id="experience" class="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
-            <div class="pt-36 pb-24">
+        <section id="experience" class="h-[100dvh] flex flex-col bg-gray-50 dark:bg-gray-900">
+            <div class="pt-24 pb-10 md:pt-36 md:pb-24">
                 <h2 class="text-3xl font-bold text-center">Experience</h2>
             </div>
             <div class="flex-grow flex items-start justify-center relative">
-                <div class="container mx-auto px-4 py-8 max-h-[calc(100vh-400px)] overflow-y-auto">
+                <div class="container mx-auto px-4 py-8 h-[calc(100dvh-280px)] md:h-[calc(100dvh-400px)] pb-24 overflow-y-auto">
                     <div class="space-y-8 relative" id="experience-list-data">
                     </div>
                 </div>
@@ -122,27 +122,30 @@
         </section>
 
         <!-- Education Section -->
-        <section id="education" class="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
-            <div class="pt-36 pb-24">
+        <section id="education" class="h-[100dvh] flex flex-col bg-gray-50 dark:bg-gray-900">
+            <div class="pt-24 pb-10 md:pt-36 md:pb-24">
                 <h2 class="text-3xl font-bold text-center">Education</h2>
             </div>
             <div class="flex-grow flex items-start justify-center relative">
-                <div class="container mx-auto px-4 py-8 max-h-[calc(100vh-400px)] overflow-y-auto">
+                <div class="container mx-auto px-4 py-8 h-[calc(100dvh-280px)] md:h-[calc(100dvh-400px)] pb-24 overflow-y-auto">
                     <div class="space-y-8 relative" id="education-list-data">
                     </div>
                 </div>
             </div>
         </section>
 
+        
         <!-- Project Section -->
         <section id="project" class="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
             <div class="container mx-auto px-4">
-                <div class="pt-36 pb-24">
+                <div class="pt-24 pb-10 md:pt-36 md:pb-24">
                     <h2 class="text-3xl font-bold text-center">Project</h2>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="project-list-data"></div>
+                <div class="grid grid-cols-3 gap-6 md:grid md:grid-cols-3 
+                            max-md:pt-24 max-md:flex max-md:overflow-x-auto max-md:gap-4 max-md:pb-2 max-md:snap-x max-md:snap-mandatory" 
+                    id="project-list-data"></div>
+                <div id="project-dots" class="flex justify-center gap-2 mt-4 md:hidden"></div>
                 <div class="pt-12 text-right">
-                    <!-- <a href="#" class="">Random</a> -->
                     <button id="project-view" onclick="projectModal.open()">View All</button>
                 </div>
             </div>
@@ -151,7 +154,7 @@
         <!-- Article Section -->
         <section id="article" class="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
             <div class="container mx-auto px-4">
-                <div class="pt-36 pb-12">
+                <div class="pt-24 pb-10 md:pt-36 md:pb-24">
                     <h2 class="text-3xl font-bold text-center">Article</h2>
                 </div>
                 <div class="grid grid-cols-1 gap-6" id="article-list-data"></div>
@@ -162,14 +165,14 @@
         </section>
 
         <!-- Certification Section -->
-        <section id="certification" class="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
+        <section id="certification" class="h-[100dvh] flex flex-col bg-gray-50 dark:bg-gray-900">
             <div class="container mx-auto px-4">
-                <div class="pt-36 pb-24">
+                <div class="pt-24 pb-10 md:pt-36 md:pb-24">
                     <h2 class="text-3xl font-bold text-center">Certification</h2>
                 </div>
                 <div class="flex-grow flex items-start justify-center relative">
-                    <div class="container mx-auto px-4 py-8 max-h-[calc(100vh-400px)] overflow-y-auto">
-                        <div class="space-y-8 relative" id="certification-list-data"></div>
+                    <div class="container mx-auto px-4 py-8 h-[calc(100dvh-280px)] md:h-[calc(100dvh-400px)] pb-24 overflow-y-auto">
+                        <div class="space-y-4 relative" id="certification-list-data"></div>
                     </div>
                 </div>
             </div>
@@ -177,9 +180,9 @@
 
         <!-- Contact Section -->
         <section id="contact" class="min-h-screen flex items-center justify-center bg-black text-gray-200">
-            <div class="container mx-auto px-4 flex flex-col md:flex-row">
+            <div class="container mx-auto px-4 flex flex-col-reverse md:flex-row">
                 <!-- Left Section: Message Form -->
-                <div class="w-full md:w-1/2 pr-0 md:pr-8 mb-8 md:mb-0">
+                <div class="w-full md:w-1/2 pr-0 md:pr-8">
                     <h2 class="text-3xl font-bold mb-8 text-center text-white">Message Me</h2>
                     <form id="contact-form" class="space-y-6">
                         <div>
@@ -203,7 +206,7 @@
                 </div>
 
                 <!-- Right Section: Elsewhere -->
-                <div class="w-full md:w-1/2 pl-0 md:pl-8">
+                <div class="w-full md:w-1/2 pl-0 md:pl-8 mb-8 md:mb-0">
                     <h2 class="text-3xl font-bold mb-8 text-center">Find Me</h2>
                     <div class="text-center space-y-4 mb-8">
                         <div id="profesional-internet-data"></div>
@@ -215,7 +218,6 @@
                         <div id="email-data"></div>
                     </div>
                 </div>
-            </div>
             </div>
         </section>
     </main>
@@ -318,7 +320,8 @@
                     id="education-card-year"></span></p>
         </div>
 
-        <div class="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 p-6 rounded-lg shadow-md cursor-pointer hover:border-gray-400 dark:hover:border-gray-600 transition-colors"
+        <div class="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 p-6 rounded-lg shadow-md cursor-pointer hover:border-gray-400 dark:hover:border-gray-600 transition-colors
+                    max-md:min-w-[80vw] max-md:snap-center"
             id="project-card-component"
             onclick="">
             <img src="#" alt="" class="w-full h-48 object-cover rounded-md mb-4" id="project-card-image">
@@ -326,11 +329,11 @@
             <p class="text-gray-600 dark:text-gray-400 line-clamp-3" id="project-card-desc"></p>
         </div>
 
-        <a class="py-6 border-b border-gray-200 dark:border-gray-800 group cursor-pointer"
+        <a class="py-6 md:py-4 border-b border-gray-200 dark:border-gray-800 group cursor-pointer"
             id="article-card-component">
             <h3 class="font-semibold text-lg mb-2 group-hover:underline"
                 id="article-card-title"></h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2"
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2 line-clamp-2"
             id="article-card-content"></p>
             <span class="text-sm text-gray-500 dark:text-gray-500 group-hover:text-black dark:group-hover:text-white transition">
                 Read more →
