@@ -1,71 +1,224 @@
 [
-    {
-        "id": 1,
-        "title": "Membuat Buku Matematika Terapan",
-        "desc": "Making a Matematika Terapan book with word and then convert to pdf format",
-        "img": "membuat_buku_matematika_terapan_cover.png",
-        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
+  {
+    "id": "membuat-buku-matematika-terapan",
+    "title": "Membuat Buku Matematika Terapan",
+    "year": "2026",
+    "desc": {
+      "id": "Membuat buku Matematika Terapan menggunakan Word lalu mengonversinya ke format PDF.",
+      "en": "Created an Applied Mathematics book using Word and converted it into PDF format."
     },
-    {
-        "id": 2,
-        "title": "Penetatrion Testing On Kopi Kenangan",
-        "desc": "Full report of penetapan testing on Kopi Kenangan Jakarta Selatan in order to achieve certification",
-        "img": "pentest_kopi_kenangan.png",
-        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
+    "img": "membuat_buku_matematika_terapan_cover.png",
+    "url": {
+      "app": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf",
+      "git": null
     },
-    {
-        "id": 3,
-        "title": "Pelatihan Pemrograman Dasar",
-        "desc": "Membuat materi dasar pemrograman Python untuk pemula, mencakup variabel, fungsi, dan kontrol alur",
-        "img": "pelatihan_pemrograman_dasar.png",
-        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
-    },
-    {
-        "id": 4,
-        "title": "Workshop Desain Grafis",
-        "desc": "Panduan dan materi untuk workshop desain grafis dasar dengan aplikasi Canva dan Photoshop",
-        "img": "workshop_desain_grafis.png",
-        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
-    },
-    {
-        "id": 5,
-        "title": "Panduan Budidaya Padi Organik",
-        "desc": "E-book panduan lengkap untuk budidaya padi organik, dari persiapan lahan hingga panen",
-        "img": "panduan_budidaya_padi_organik.png",
-        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
-    },
-    {
-        "id": 6,
-        "title": "Laporan Hasil Panen Jagung di Jawa Barat",
-        "desc": "Analisis hasil panen jagung di beberapa wilayah Jawa Barat sebagai bahan evaluasi produktivitas",
-        "img": "laporan_hasil_panen_jagung.png",
-        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
-    },
-    {
-        "id": 7,
-        "title": "Sejarah Kereta Api di Indonesia",
-        "desc": "Buku sejarah tentang perkembangan kereta api di Indonesia dari masa kolonial hingga saat ini",
-        "img": "sejarah_kereta_api_indonesia.png",
-        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
-    },
-    {
-        "id": 8,
-        "title": "Analisis Puisi Chairil Anwar",
-        "desc": "Studi mendalam mengenai tema dan gaya bahasa dalam puisi-puisi karya Chairil Anwar",
-        "img": "analisis_puisi_chairil_anwar.png",
-        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
-    },{
-        "id": 9,
-        "title": "Perkembangan Sastra Modern Indonesia",
-        "desc": "Laporan tentang evolusi kesusastraan Indonesia di era modern dan pengaruh globalisasi",
-        "img": "perkembangan_sastra_modern_indonesia.png",
-        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
-    },
-    {
-        "id": 10,
-        "title": "Membaca Karya Sastra Dunia",
-        "desc": "Panduan untuk memahami karya sastra klasik dari berbagai belahan dunia, seperti karya Shakespeare dan Tolstoy",
-        "img": "membaca_karya_sastra_dunia.png",
-        "url": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf"
+    "tag": [
+      "Documentation"
+    ],
+    "role": "Writer",
+    "status": {
+      "id": "Selesai",
+      "en": "Completed"
     }
+  },
+  {
+    "id": "penetration-testing-on-kopi-kenangan",
+    "title": "Penetatrion Testing On Kopi Kenangan",
+    "year": "2026",
+    "desc": {
+      "id": "Laporan lengkap penetration testing pada Kopi Kenangan Jakarta Selatan untuk kebutuhan sertifikasi.",
+      "en": "A full penetration testing report on Kopi Kenangan Jakarta Selatan for certification purposes."
+    },
+    "img": "pentest_kopi_kenangan.png",
+    "url": {
+      "app": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf",
+      "git": null
+    },
+    "tag": [
+      "Security"
+    ],
+    "role": "Security Tester",
+    "status": {
+      "id": "Selesai",
+      "en": "Completed"
+    }
+  },
+  {
+    "id": "pelatihan-pemrograman-dasar",
+    "title": "Pelatihan Pemrograman Dasar",
+    "year": "2026",
+    "desc": {
+      "id": "Membuat materi dasar pemrograman Python untuk pemula, mencakup variabel, fungsi, dan kontrol alur.",
+      "en": "Created introductory Python programming materials covering variables, functions, and control flow."
+    },
+    "img": "pelatihan_pemrograman_dasar.png",
+    "url": {
+      "app": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf",
+      "git": null
+    },
+    "tag": [
+      "Python",
+      "Education"
+    ],
+    "role": "Instructor",
+    "status": {
+      "id": "Selesai",
+      "en": "Completed"
+    }
+  },
+  {
+    "id": "workshop-desain-grafis",
+    "title": "Workshop Desain Grafis",
+    "year": "2026",
+    "desc": {
+      "id": "Menyusun panduan dan materi workshop desain grafis dasar menggunakan Canva dan Photoshop.",
+      "en": "Prepared basic graphic design workshop guides and materials using Canva and Photoshop."
+    },
+    "img": "workshop_desain_grafis.png",
+    "url": {
+      "app": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf",
+      "git": null
+    },
+    "tag": [
+      "Design"
+    ],
+    "role": "Instructor",
+    "status": {
+      "id": "Selesai",
+      "en": "Completed"
+    }
+  },
+  {
+    "id": "panduan-budidaya-padi-organik",
+    "title": "Panduan Budidaya Padi Organik",
+    "year": "2026",
+    "desc": {
+      "id": "E-book panduan lengkap budidaya padi organik, dari persiapan lahan hingga panen.",
+      "en": "An e-book guide for organic rice cultivation, from land preparation to harvest."
+    },
+    "img": "panduan_budidaya_padi_organik.png",
+    "url": {
+      "app": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf",
+      "git": null
+    },
+    "tag": [
+      "Agriculture"
+    ],
+    "role": "Writer",
+    "status": {
+      "id": "Selesai",
+      "en": "Completed"
+    }
+  },
+  {
+    "id": "laporan-hasil-panen-jagung-di-jawa-barat",
+    "title": "Laporan Hasil Panen Jagung di Jawa Barat",
+    "year": "2026",
+    "desc": {
+      "id": "Analisis hasil panen jagung di beberapa wilayah Jawa Barat sebagai bahan evaluasi produktivitas.",
+      "en": "An analysis of corn harvest outcomes across several West Java regions for productivity evaluation."
+    },
+    "img": "laporan_hasil_panen_jagung.png",
+    "url": {
+      "app": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf",
+      "git": null
+    },
+    "tag": [
+      "Research"
+    ],
+    "role": "Analyst",
+    "status": {
+      "id": "Selesai",
+      "en": "Completed"
+    }
+  },
+  {
+    "id": "sejarah-kereta-api-di-indonesia",
+    "title": "Sejarah Kereta Api di Indonesia",
+    "year": "2026",
+    "desc": {
+      "id": "Buku sejarah perkembangan kereta api di Indonesia dari masa kolonial hingga saat ini.",
+      "en": "A historical book about railway development in Indonesia from colonial times to the present."
+    },
+    "img": "sejarah_kereta_api_indonesia.png",
+    "url": {
+      "app": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf",
+      "git": null
+    },
+    "tag": [
+      "History"
+    ],
+    "role": "Writer",
+    "status": {
+      "id": "Selesai",
+      "en": "Completed"
+    }
+  },
+  {
+    "id": "analisis-puisi-chairil-anwar",
+    "title": "Analisis Puisi Chairil Anwar",
+    "year": "2026",
+    "desc": {
+      "id": "Studi mendalam mengenai tema dan gaya bahasa dalam puisi karya Chairil Anwar.",
+      "en": "An in-depth study of themes and language style in Chairil Anwar's poems."
+    },
+    "img": "analisis_puisi_chairil_anwar.png",
+    "url": {
+      "app": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf",
+      "git": null
+    },
+    "tag": [
+      "Literature"
+    ],
+    "role": "Researcher",
+    "status": {
+      "id": "Selesai",
+      "en": "Completed"
+    }
+  },
+  {
+    "id": "perkembangan-sastra-modern-indonesia",
+    "title": "Perkembangan Sastra Modern Indonesia",
+    "year": "2026",
+    "desc": {
+      "id": "Laporan evolusi kesusastraan Indonesia di era modern serta pengaruh globalisasi.",
+      "en": "A report on the evolution of modern Indonesian literature and the influence of globalization."
+    },
+    "img": "perkembangan_sastra_modern_indonesia.png",
+    "url": {
+      "app": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf",
+      "git": null
+    },
+    "tag": [
+      "Literature",
+      "Research"
+    ],
+    "role": "Researcher",
+    "status": {
+      "id": "Selesai",
+      "en": "Completed"
+    }
+  },
+  {
+    "id": "membaca-karya-sastra-dunia",
+    "title": "Membaca Karya Sastra Dunia",
+    "year": "2026",
+    "desc": {
+      "id": "Panduan memahami karya sastra klasik dunia seperti Shakespeare dan Tolstoy.",
+      "en": "A guide for understanding classical world literature such as Shakespeare and Tolstoy."
+    },
+    "img": "membaca_karya_sastra_dunia.png",
+    "url": {
+      "app": "https://www.rd.usda.gov/sites/default/files/pdf-sample_0.pdf",
+      "git": null
+    },
+    "tag": [
+      "Literature"
+    ],
+    "role": "Writer",
+    "status": {
+      "id": "Selesai",
+      "en": "Completed"
+    }
+  }
 ]

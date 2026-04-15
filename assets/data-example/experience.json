@@ -1,49 +1,66 @@
 [
-    {
-        "id": 1,
-        "company_name": "PT Mencari Cinta Sejati",
-        "employment_type": null,
-        "position": "Graphic Designer",
-        "location": "Imogiri",
-        "location_type": "On-site",
-        "year": {
-            "start": "July 1625",
-            "end": "January 1645"
-        },
-        "job_desc": [
-            "Making poster for Sultan Agung's greatness for every town",
-            "Ilustrating Mataram's army in war"
-        ]
+  {
+    "id": "pt-mencari-cinta-sejati",
+    "company_name": "PT Mencari Cinta Sejati",
+    "employment_type": null,
+    "position": "Graphic Designer",
+    "location": "Imogiri",
+    "location_type": "On-site",
+    "year": {
+      "start": "07-1625",
+      "end": "01-1645"
     },
-    {
-        "id": 2,
-        "company_name": "Self-employed",
-        "employment_type": "Freelance",
-        "position": "History writer",
-        "location": "Java Island",
-        "location_type": "Hybrid",
-        "year": {
-            "start": "July 1576",
-            "end": "Present"
-        },
-        "job_desc": [
-            "Writing history from the founding of the Mataram kingdom, greatness, betrayal, dualism, to the destruction of the empire.",
-            "Writing how Indonesia become independent"
-        ]
-    },
-    {
-        "id": 3,
-        "company_name": "PT XYZ",
-        "employment_type": "Contract",
-        "position": "Jongos",
-        "location": "Hindia-Belanda",
-        "location_type": "On-site",
-        "year": {
-            "start": "July 1885",
-            "end": "January 1901"
-        },
-        "job_desc": [
-            "Membantu tuan"
-        ]
+    "job_desc": {
+      "id": [
+        "Membuat poster kejayaan Sultan Agung untuk setiap wilayah",
+        "Membuat ilustrasi pasukan Mataram saat perang"
+      ],
+      "en": [
+        "Created posters highlighting Sultan Agung's greatness for each region",
+        "Illustrated Mataram's army during war"
+      ]
     }
+  },
+  {
+    "id": "self-employed",
+    "company_name": "Self-employed",
+    "employment_type": "Freelance",
+    "position": "History Writer",
+    "location": "Java Island",
+    "location_type": "Hybrid",
+    "year": {
+      "start": "07-1576",
+      "end": "sekarang"
+    },
+    "job_desc": {
+      "id": [
+        "Menulis sejarah berdirinya kerajaan Mataram hingga masa keruntuhannya",
+        "Menulis sejarah proses Indonesia menjadi negara merdeka"
+      ],
+      "en": [
+        "Wrote about the Mataram kingdom from its founding to its downfall",
+        "Wrote historical notes on how Indonesia became independent"
+      ]
+    }
+  },
+  {
+    "id": "pt-xyz",
+    "company_name": "PT XYZ",
+    "employment_type": "Contract",
+    "position": "Jongos",
+    "location": "Hindia-Belanda",
+    "location_type": "On-site",
+    "year": {
+      "start": "07-1885",
+      "end": "01-1901"
+    },
+    "job_desc": {
+      "id": [
+        "Membantu operasional harian tuan"
+      ],
+      "en": [
+        "Helped with the employer's daily operational tasks"
+      ]
+    }
+  }
 ]

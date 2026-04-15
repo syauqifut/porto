@@ -1,6 +1,9 @@
 {
-    "name": "Raden Wiraguna Jayaningrat",
-    "nickname": "Wiraguna",
-    "position": "Expert Java Developer",
-    "about": "I Mastering Java since kids, so I know what to do."
+  "name": "Raden Wiraguna Jayaningrat",
+  "nickname": "Wiraguna",
+  "position": "Expert Java Developer",
+  "about": {
+    "id": "Saya menguasai Java sejak kecil dan berpengalaman membangun berbagai aplikasi berbasis Java.",
+    "en": "I have mastered Java since childhood and built various applications using Java."
+  }
 }
