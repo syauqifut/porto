@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 
-const { handleContact } = require('./scripts/handle-contact');
+const { handleMessage } = require('./scripts/handle-message');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -21,12 +21,12 @@ app.get('/config', (req, res) => {
 });
 
 
-app.post('/contact', async (req, res) => {
+app.post('/message', async (req, res) => {
   try {
-    await handleContact(req.body);
+    await handleMessage(req.body);
     res.json({ success: true });
   } catch (err) {
-    console.error('Contact error:', err);
+    console.error('Message error:', err);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
