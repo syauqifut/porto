@@ -6,7 +6,7 @@ const path = require('path');
 const { handleMessage } = require('./scripts/handle-message');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
@@ -31,6 +31,7 @@ app.post('/message', async (req, res) => {
   }
 });
 
+app.use(express.static('dist'));
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);

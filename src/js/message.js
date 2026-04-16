@@ -6,7 +6,7 @@ document.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     // Get form data
-    const formData = new FormData(messageForm);
+    const formData = new FormData(form);
     const data = {
         name: formData.get('name'),
         email: formData.get('email'),
@@ -15,7 +15,7 @@ document.addEventListener('submit', async (e) => {
 
     try {
         // Show loading state
-        const submitButton = messageForm.querySelector('button[type="submit"]');
+        const submitButton = form.querySelector('button[type="submit"]');
         const originalText = submitButton.textContent;
         submitButton.disabled = true;
         submitButton.textContent = 'Sending...';
@@ -36,7 +36,7 @@ document.addEventListener('submit', async (e) => {
 
         // Show success message
         submitButton.textContent = 'Message Sent!';
-        messageForm.reset();
+        form.reset();
 
         // Reset button after 2 seconds
         setTimeout(() => {
@@ -48,7 +48,7 @@ document.addEventListener('submit', async (e) => {
         console.error('Error sending message:', error);
         
         // Show error message
-        const submitButton = messageForm.querySelector('button[type="submit"]');
+        const submitButton = form.querySelector('button[type="submit"]');
         submitButton.textContent = 'Error Sending Message';
         // submitButton.classList.add('bg-red-500');
 
