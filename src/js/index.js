@@ -1,3 +1,8 @@
+import './darkmode.js'
+import './data-loader.js'
+import './project-detail.js'
+import './message.js'
+
 import { loadConfig } from '../../utils/load-config.js';
 const config = await loadConfig();
 
