@@ -163,7 +163,7 @@ function loadData(lang) {
 
         projectComponent.querySelector("#project-card-title").innerHTML = project.title;
         projectComponent.querySelector("#project-card-desc").innerHTML = localize(project.desc, lang);
-        projectComponent.querySelector("#project-card-image").src = `assets/img/projects/${project.img}`;
+        projectComponent.querySelector("#project-card-image").src = `/assets/img/projects/${project.img}`;
         projectComponent.querySelector("#project-card-image").alt = project.title;
 
         projectComponent.onclick = () => {
