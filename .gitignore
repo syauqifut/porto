@@ -5,3 +5,5 @@ dist
 assets/img/projects/
 .env
 **/.DS_Store
+public/assets/data/*
+public/assets/img/projects/*
