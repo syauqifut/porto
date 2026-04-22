@@ -22,7 +22,7 @@ function loadData(lang) {
       document.getElementById("name-data").textContent =
         data.name.toUpperCase();
       document.getElementById("position-data").textContent = data.position;
-      document.getElementById("about-data").textContent = richTextFormatGenerator(
+      document.getElementById("about-data").innerHTML = richTextFormatGenerator(
         localize(data.about, lang)
       );
       document.querySelectorAll(".nick-name-data").forEach((element) => {
@@ -255,6 +255,7 @@ function localize(value, lang) {
 
 function richTextFormatGenerator(string) {
   return `${string
+    .replace(/\n/g, "<br>")
     .replace(/_(.*?)_/g, "<i>$1</i>")
     .replace(/\*(.*?)\*/g, "<b>$1</b>")}<br>`;
 }
