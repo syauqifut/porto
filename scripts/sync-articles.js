@@ -1,8 +1,9 @@
+require("dotenv").config();
+
 const fs = require("fs");
 const path = require("path");
-const config = require("../utils/load-config");
 
-let mediumUsername = config.MEDIUM_USERNAME;
+const mediumUsername = process.env.MEDIUM_USERNAME || "";
 const RSS_URL = `https://medium.com/feed/@${mediumUsername}`;
 const OUTPUT_PATH = path.join(__dirname, "../assets/data/article.json");
 const BACKUP_PATH = path.join(__dirname, "../assets/data/article.backup.json");
@@ -85,6 +86,11 @@ function saveJSON(data) {
 }
 
 async function main() {
+  if (!mediumUsername.trim()) {
+    console.error("sync-articles: MEDIUM_USERNAME is not set (check .env)");
+    process.exit(1);
+  }
+
   try {
     const xml = await fetchRSS();
     const articles = parseRSS(xml);
