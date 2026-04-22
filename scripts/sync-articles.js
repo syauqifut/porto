@@ -5,8 +5,8 @@ const path = require("path");
 
 const mediumUsername = process.env.MEDIUM_USERNAME || "";
 const RSS_URL = `https://medium.com/feed/@${mediumUsername}`;
-const OUTPUT_PATH = path.join(__dirname, "../assets/data/article.json");
-const BACKUP_PATH = path.join(__dirname, "../assets/data/article.backup.json");
+const OUTPUT_PATH = path.join(__dirname, "../public/assets/data/article.json");
+const BACKUP_PATH = path.join(__dirname, "../public/assets/data/article.backup.json");
 
 async function fetchRSS() {
   const res = await fetch(RSS_URL);
@@ -76,10 +76,6 @@ function parseRSS(xml) {
 function saveJSON(data) {
   if (!data || data.length === 0) {
     return;
-  }
-
-  if (fs.existsSync(OUTPUT_PATH)) {
-    fs.copyFileSync(OUTPUT_PATH, BACKUP_PATH);
   }
 
   fs.writeFileSync(OUTPUT_PATH, JSON.stringify(data, null, 2));
