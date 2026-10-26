@@ -14,7 +14,7 @@ export async function loadConfig() {
 
     cachedConfig = {
       LANG: 'default',
-      MEDIUM_USERNAME: ''
+      SUBSTACK_USERNAME: ''
     };
 
     return cachedConfig;

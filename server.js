@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname)));
 app.get('/config', (req, res) => {
   res.json({
     LANG: process.env.LANG || 'default',
-    MEDIUM_USERNAME: process.env.MEDIUM_USERNAME || ''
+    SUBSTACK_USERNAME: process.env.SUBSTACK_USERNAME || ''
   });
 });
 
